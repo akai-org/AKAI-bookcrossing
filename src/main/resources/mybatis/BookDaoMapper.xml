@@ -101,6 +101,12 @@
         WHERE id = #{bookId};
     </update>
 
+    <update id="updateAvailable">
+        UPDATE tb_book
+        SET available = #{available}
+        WHERE id = #{bookId};
+    </update>
+
     <insert id="insertBookUserRequest">
         INSERT INTO tb_book_user_request (requester_id, book_id)
         VALUES (#{bookRentRequest.requester.id}, #{bookRentRequest.book.id});
@@ -120,6 +126,13 @@
                  INNER JOIN tb_user u ON (u.id = tbur.requester_id)
                  INNER JOIN tb_book b on (b.id = tbur.book_id)
         WHERE b.owner_id = #{ownerId};
+    </select>
+
+    <select id="getBookRentRequestByOwnerAndBookIds" resultType="Integer">
+        SELECT count(*)
+        FROM tb_book_user_request tbur
+        WHERE tbur.requester_id = #{requesterId}
+          AND tbur.book_id = #{bookId};
     </select>
 
     <delete id="deleteBookRentRequestsById">
