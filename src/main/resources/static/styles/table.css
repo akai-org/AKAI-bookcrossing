@@ -1,0 +1,81 @@
+th {
+    font-size: 1rem;
+}
+
+td {
+    font-size: .9rem;
+}
+
+.container-md {
+    transition: max-width .2s linear;
+}
+
+svg {
+    width: 37px;
+    height: 37px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+    table {
+        width: 80vw;
+    }
+
+    .mw {
+        width: 30% !important;
+    }
+
+    .break {
+        word-break: break-all;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    table {
+        width: 100vw !important;
+        transform: translateX(-15px);
+    }
+
+    table td {
+        padding: 3px !important;
+    }
+
+    table th {
+        padding: 5px !important;
+    }
+
+    table td,
+    table th {
+        font-size: 9px;
+    }
+
+    .h3 {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .box {
+        flex-direction: column;
+    }
+
+    .box input {
+        width: 62%;
+    }
+
+    .box button {
+        width: 35%;
+        margin-left: auto;
+    }
+
+    .logout__button {
+        align-self: flex-end;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .form-inline {
+        margin-right: 7vw;
+    }
+}

@@ -103,5 +103,4 @@ public class BookDaoImpl implements BookDao {
     public void updateAvailable(int bookId, boolean available) {
         bookMapper.updateAvailable(bookId, available);
     }
-
 }

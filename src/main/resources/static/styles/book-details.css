@@ -1,0 +1,15 @@
+h2:first-child{
+    font-weight: bold;
+}
+td{
+    font-size: .9rem;
+}
+th{
+    font-size: 1rem;
+}
+@media screen and (max-width: 420px){
+    .opinions{
+        width: 100vw;
+        transform: translateX(-48px);
+    }
+}
