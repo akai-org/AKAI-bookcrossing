@@ -60,12 +60,7 @@ svg {
     }
 
     .box input {
-        width: 62%;
-    }
-
-    .box button {
-        width: 35%;
-        margin-left: auto;
+        width: 100%;
     }
 
     .logout__button {

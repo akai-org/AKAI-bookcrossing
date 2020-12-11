@@ -1,0 +1,7 @@
+@media (max-width: 500px) {
+    .btn-primary,
+    .btn-warning,
+    input::placeholder{
+        font-size: 12px;
+    }
+}

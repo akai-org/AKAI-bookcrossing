@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/table.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/small-menu.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/my-books.css}"/>
 </head>
 <body>
 
@@ -49,10 +51,7 @@
         </div>
 
         <div class="d-flex justify-content-between box">
-            <form class="form-inline mb-2">
-                <input class="form-control mr-2" type="search" placeholder="Szukaj..." aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Szukaj</button>
-            </form>
+                <input class="form-control mr-2 mb-2" type="search" placeholder="Szukaj..." aria-label="Search">
 
             <a class="btn btn-primary mb-1 mb-lg-2 px-lg-4 logout__button" href="/logout">Wyloguj</a>
         </div>
@@ -65,15 +64,35 @@
 
 
 <div class="container-md mt-1">
-    <p class="h3 mb-3">Moje książki udostępnione innym</p>
+    <p class="h3 mb-3">Prośby o wypożyczenie książki</p>
     <table class="table table-striped">
         <tr>
             <th>ID</th>
             <th>Tytuł</th>
-            <th>Autor</th>
+            <th>Wynajmujący</th>
+            <th></th>
+        </tr>
+        <tr th:each="book : ${books_owner}">
+            <td class="break" th:text="${book.id}">ID</td>
+            <td class="break" th:text="${book.title}">Tytuł</td>
+            <td class="break">Wynajmujący</td>
+            <td class="w-25">
+                <a href="/my-books/accept" class="btn btn-success mr-2">Zaakceptuj</a>
+                <a href="/my-books/decline" class="btn btn-danger">Odrzuć</a>
+            </td>
+        </tr>
+    </table>
+
+    <p class="h3 my-4">Moje książki udostępnione innym</p>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th width="10%">Tytuł</th>
+            <th width="15%">Autor</th>
             <th>Opis</th>
-            <th>Obecny Właściciel</th>
+            <th width="20%">Obecny Właściciel</th>
             <th>Szczegóły</th>
+            <th></th>
         </tr>
         <tr th:each="book : ${books_owner}">
             <td class="break" th:text="${book.id}">ID</td>
@@ -82,6 +101,7 @@
             <td class="break mw" th:text="${book.description}">Opis</td>
             <td class="break" th:text="${book.reader?.fullName}">Obecny Właściciel</td>
             <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+            <td><a class="btn btn-info" href="">Udostępnij</a></td>
         </tr>
     </table>
 
@@ -89,10 +109,10 @@
     <table class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Tytuł</th>
-            <th>Autor</th>
+            <th width="10%">Tytuł</th>
+            <th width="15%">Autor</th>
             <th>Opis</th>
-            <th>Właściciel</th>
+            <th width="20%">Właściciel</th>
             <th>Szczegóły</th>
         </tr>
         <tr th:each="book : ${books_reader}">
