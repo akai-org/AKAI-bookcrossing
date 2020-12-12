@@ -71,18 +71,21 @@ public class BookBean {
         bookDao.updateReader(request.getBook().getId(), request.getRequester().getId());
     }
 
-    public void insertBookUserRequest(int bookId) {
+    public boolean insertBookUserRequest(int bookId) {
         BookRentRequest bookRentRequest = BookRentRequest.builder()
                 .requester(currentUserService.getCurrentUser())
                 .book(bookDao.getBookById(bookId))
                 .build();
-        if (isBookRentRequestDuplicated(bookRentRequest) == 0)
+        if (isBookRentRequestDuplicated(bookRentRequest) == 0) {
             bookDao.insertBookUserRequest(bookRentRequest);
+            return true;
+        }
+        return false;
     }
 
-    public List<BookRentRequest> getBookRentRequestsByOwnerId() {
+    public List<BookRentRequest> getBookRentRequestsByReaderId() {
         User user = currentUserService.getCurrentUser();
-        return bookDao.getBookRentRequestsByOwnerId(user.getId());
+        return bookDao.getBookRentRequestsByReaderId(user.getId());
     }
 
     public void deleteBookRentRequestsById(int id) {
@@ -101,7 +104,7 @@ public class BookBean {
     }
 
     private int isBookRentRequestDuplicated(BookRentRequest bookRentRequest) {
-        return bookDao.getBookRentRequestByOwnerAndBookIds(
+        return bookDao.getBookRentRequestByRequesterAndBookIds(
                 bookRentRequest
                         .getRequester()
                         .getId(),

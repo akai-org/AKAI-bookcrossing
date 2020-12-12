@@ -40,13 +40,13 @@ public interface BookDaoMapper {
 
     void insertBookUserRequest(@Param("bookRentRequest") BookRentRequest bookRentRequest);
 
-    List<BookRentRequest> getBookRentRequestsByOwnerId(@Param("ownerId") int ownerId);
+    List<BookRentRequest> getBookRentRequestsByReaderId(@Param("readerId") int readerId);
 
     BookRentRequest getBookRentRequestsById(@Param("id") int id);
 
     void deleteBookRentRequestsById(@Param("id") int id);
 
-    Integer getBookRentRequestByOwnerAndBookIds(@Param("requesterId") int requesterId, @Param("bookId") int bookId);
+    Integer getBookRentRequestByRequesterAndBookIds(@Param("requesterId") int requesterId, @Param("bookId") int bookId);
 
     void updateAvailable(@Param("bookId") int bookId, @Param("available") boolean available);
 }

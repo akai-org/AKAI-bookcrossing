@@ -80,8 +80,8 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<BookRentRequest> getBookRentRequestsByOwnerId(int ownerId) {
-        return bookMapper.getBookRentRequestsByOwnerId(ownerId);
+    public List<BookRentRequest> getBookRentRequestsByReaderId(int readerId) {
+        return bookMapper.getBookRentRequestsByReaderId(readerId);
     }
 
     @Override
@@ -95,8 +95,8 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Integer getBookRentRequestByOwnerAndBookIds(int requesterId, int bookId) {
-        return bookMapper.getBookRentRequestByOwnerAndBookIds(requesterId, bookId);
+    public Integer getBookRentRequestByRequesterAndBookIds(int requesterId, int bookId) {
+        return bookMapper.getBookRentRequestByRequesterAndBookIds(requesterId, bookId);
     }
 
     @Override

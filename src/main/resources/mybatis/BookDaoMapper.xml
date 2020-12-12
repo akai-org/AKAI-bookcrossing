@@ -43,8 +43,8 @@
     </select>
 
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
-        INSERT INTO tb_book (title, author, description, owner_id, reader_id)
-        VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
+        INSERT INTO tb_book (title, author, description, owner_id, reader_id, available)
+        VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id}, 1);
     </insert>
 
     <select id="getBooksByOwnerId" resultMap="fullBookMap">
@@ -120,15 +120,15 @@
         WHERE tbur.id = #{id};
     </select>
 
-    <select id="getBookRentRequestsByOwnerId" resultMap="baseBookRentRequestMap">
+    <select id="getBookRentRequestsByReaderId" resultMap="baseBookRentRequestMap">
         SELECT tbur.*
         FROM tb_book_user_request tbur
                  INNER JOIN tb_user u ON (u.id = tbur.requester_id)
                  INNER JOIN tb_book b on (b.id = tbur.book_id)
-        WHERE b.owner_id = #{ownerId};
+        WHERE b.reader_id = #{readerId};
     </select>
 
-    <select id="getBookRentRequestByOwnerAndBookIds" resultType="Integer">
+    <select id="getBookRentRequestByRequesterAndBookIds" resultType="Integer">
         SELECT count(*)
         FROM tb_book_user_request tbur
         WHERE tbur.requester_id = #{requesterId}

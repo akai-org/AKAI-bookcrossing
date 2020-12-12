@@ -34,13 +34,13 @@ public interface BookDao {
 
     void insertBookUserRequest(BookRentRequest bookRentRequest);
 
-    List<BookRentRequest> getBookRentRequestsByOwnerId(int ownerId);
+    List<BookRentRequest> getBookRentRequestsByReaderId(int readerId);
 
     BookRentRequest getBookRentRequestsById(int id);
 
     void deleteBookRentRequestsById(int id);
 
-    Integer getBookRentRequestByOwnerAndBookIds(int requesterId, int bookId);
+    Integer getBookRentRequestByRequesterAndBookIds(int requesterId, int bookId);
 
     void updateAvailable(int bookId, boolean available);
 
