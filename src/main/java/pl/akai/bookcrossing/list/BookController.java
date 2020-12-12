@@ -11,6 +11,7 @@ import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.BookRentRequest;
 import pl.akai.bookcrossing.model.Opinion;
+import pl.akai.bookcrossing.opinion.OpinionBean;
 
 import java.util.List;
 

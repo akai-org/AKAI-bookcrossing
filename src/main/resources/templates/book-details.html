@@ -4,6 +4,11 @@
     <title>Szczegóły książki</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/requests.js}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/book-details.css}"/>
@@ -22,7 +27,7 @@
 
     <div class="box d-flex flex-column justify-content-between flex-lg-row">
 
-        <form action="#" method="post" th:action="@{/book/{id}(id = ${book.id})}" th:object="${opinion}"
+        <form action="#"
               class="form w-100">
             <div class="form-group">
                 <h3 class="mb-3">Dodaj opinię</h3>
@@ -34,11 +39,6 @@
                         <option>3</option>
                         <option>4</option>
                         <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
                     </select>
                 </p>
 
@@ -49,7 +49,8 @@
                 </div>
 
                 <div class="inputs">
-                    <input class="btn btn-warning col-md-3 col-lg-2 mb-2 mr-2" type="submit" value="Dodaj"/>
+                    <a class="btn btn-warning col-md-3 col-lg-2 mb-2 mr-2"
+                       th:onclick="'javascript:addOpinion(\'' + ${book.id} + '\');'">Dodaj</a>
                     <input class="btn btn-warning col-md-3 col-lg-2 mb-2" type="reset" value="Reset"/>
                 </div>
             </div>
@@ -70,10 +71,6 @@
                 </tr>
             </table>
         </div>
-    </div>
-
-    <div class="mb-3" th:if="${isSendSuccess}">
-        <p class="text-success h5">Udało Ci się dodać opinię!</p>
     </div>
 
     <table class="tags table">

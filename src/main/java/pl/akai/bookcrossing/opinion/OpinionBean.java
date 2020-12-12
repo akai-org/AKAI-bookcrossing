@@ -1,11 +1,10 @@
-package pl.akai.bookcrossing.list;
+package pl.akai.bookcrossing.opinion;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Opinion;
 import pl.akai.bookcrossing.model.User;
-import pl.akai.bookcrossing.opinion.OpinionDao;
 
 import java.util.List;
 

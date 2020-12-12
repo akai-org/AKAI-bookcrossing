@@ -4,11 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Opinion;
-import pl.akai.bookcrossing.opinion.OpinionDao;
+import pl.akai.bookcrossing.opinion.OpinionBean;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,7 +15,7 @@ public class BookRestController {
 
     private final BookBean bookBean;
     private final BookDao bookDao;
-    private final OpinionDao opinionBean;
+    private final OpinionBean opinionBean;
 
     @PostMapping("/book/rent")
     public ResponseEntity<Void> bookRental(@RequestBody Book book) {

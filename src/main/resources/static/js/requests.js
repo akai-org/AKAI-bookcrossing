@@ -93,10 +93,13 @@ async function sendRentRequest(bookId) {
     return false;
 }
 
-async function addOpinion(bookId, opinion) {
+async function addOpinion(bookId) {
+    console.log(bookId);
+    const description = document.getElementById('description').value;
+    const rating = document.getElementById('rating').value;
     try {
         const result = await $.ajax({
-            url: `${addOpinionULR}/${bookId}/rent`,
+            url: `${addOpinionULR}/${bookId}/add-opinion`,
             type: 'POST',
             contentType: 'application/json',
             headers: headers,
@@ -104,10 +107,12 @@ async function addOpinion(bookId, opinion) {
                 withCredentials: true
             },
             data: JSON.stringify({
-                opinion: opinion
+                description: description,
+                rating: Number(rating)
             })
         });
         alert("Dodanie opinii zakończone sukcesem");
+        location.reload();
     } catch (err) {
         alert("Dodanie opinii zakończone niepowodzeniem");
     }

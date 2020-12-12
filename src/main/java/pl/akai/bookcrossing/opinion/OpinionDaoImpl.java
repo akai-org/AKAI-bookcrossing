@@ -1,7 +1,6 @@
 package pl.akai.bookcrossing.opinion;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Opinion;
 
