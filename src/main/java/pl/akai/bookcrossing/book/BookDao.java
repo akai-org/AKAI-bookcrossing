@@ -1,4 +1,4 @@
-package pl.akai.bookcrossing.list;
+package pl.akai.bookcrossing.book;
 
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookRentRequest;

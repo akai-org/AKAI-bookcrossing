@@ -1,4 +1,4 @@
-package pl.akai.bookcrossing.list;
+package pl.akai.bookcrossing.book;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,11 +18,11 @@ public class BookRestController {
 
     @PostMapping("/book/rent")
     public ResponseEntity<Void> bookRental(@RequestBody Book book) {
-        boolean duplicated = bookBean.insertBookUserRequest(book.getId());
-        if (duplicated) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        } else {
+        boolean success = bookBean.insertBookUserRequest(book.getId());
+        if (success) {
             return new ResponseEntity<>(HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
 

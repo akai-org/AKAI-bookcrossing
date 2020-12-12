@@ -1,4 +1,4 @@
-package pl.akai.bookcrossing.list;
+package pl.akai.bookcrossing.book;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

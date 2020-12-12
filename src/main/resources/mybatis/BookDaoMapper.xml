@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="pl.akai.bookcrossing.list.BookDaoMapper">
+<mapper namespace="pl.akai.bookcrossing.book.BookDaoMapper">
 
     <resultMap id="baseBookMap" type="Book">
         <id column="id" property="id" jdbcType="INTEGER"/>
@@ -28,7 +28,7 @@
         <association column="requester_id" property="requester" javaType="User"
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
         <association column="book_id" property="book" javaType="Book"
-                     select="pl.akai.bookcrossing.list.BookDaoMapper.getBookById"/>
+                     select="pl.akai.bookcrossing.book.BookDaoMapper.getBookById"/>
     </resultMap>
 
     <select id="getAllBooks" resultMap="fullBookMap">

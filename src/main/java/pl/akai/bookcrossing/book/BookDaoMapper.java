@@ -1,4 +1,4 @@
-package pl.akai.bookcrossing.list;
+package pl.akai.bookcrossing.book;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
