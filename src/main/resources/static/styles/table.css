@@ -10,7 +10,7 @@ td {
     transition: max-width .2s linear;
 }
 
-svg {
+.svg {
     width: 37px;
     height: 37px;
     cursor: pointer;
