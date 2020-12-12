@@ -14,7 +14,6 @@ import pl.akai.bookcrossing.opinion.OpinionBean;
 public class BookRestController {
 
     private final BookBean bookBean;
-    private final BookDao bookDao;
     private final OpinionBean opinionBean;
 
     @PostMapping("/book/rent")
