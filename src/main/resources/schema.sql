@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS tb_user
     full_name VARCHAR(255),
     email     VARCHAR(255),
     PRIMARY KEY (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS tb_book
 (
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS tb_book
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES tb_user (id),
     FOREIGN KEY (reader_id) REFERENCES tb_user (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS tb_opinion
 (
@@ -30,14 +30,14 @@ CREATE TABLE IF NOT EXISTS tb_opinion
     PRIMARY KEY (id),
     FOREIGN KEY (book_id) REFERENCES tb_book (id),
     FOREIGN KEY (author_id) REFERENCES tb_user (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS tb_tag
 (
     id   INT AUTO_INCREMENT NOT NULL,
     name varchar(255)       NOT NULL,
     PRIMARY KEY (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS tb_book_tags
 (
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS tb_book_tags
     PRIMARY KEY (book_id, tag_id),
     FOREIGN KEY (book_id) REFERENCES tb_book (id),
     FOREIGN KEY (tag_id) REFERENCES tb_tag (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS tb_book_user_request
 (
@@ -56,4 +56,4 @@ CREATE TABLE IF NOT EXISTS tb_book_user_request
     PRIMARY KEY (id),
     FOREIGN KEY (requester_id) REFERENCES tb_user (id),
     FOREIGN KEY (book_id) REFERENCES tb_book (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
