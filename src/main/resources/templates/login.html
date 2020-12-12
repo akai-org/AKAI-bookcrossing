@@ -1,29 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>AKAI Bookcrossing</title>
     <meta charset="UTF-8">
-    <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
-    <style>
-        .container{
-            height: 90vh;
-        }
-        body{
-            background-color: rgb(42, 50, 61);
-            color: white;
-        }
-        @media screen and (max-width: 425px){
-            h1{
-                font-size: 2rem;
-            }
-            h2{
-                font-size: 1.5rem;
-                margin-top: 15px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/login.css}"/>
+    <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
 </head>
 <body>
 <div class="container text-center d-flex flex-column align-items-center justify-content-center">

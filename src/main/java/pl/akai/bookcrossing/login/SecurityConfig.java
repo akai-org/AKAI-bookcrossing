@@ -11,6 +11,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_PAGE = "/login";
+    private static final String LOGIN_PAGE_CSS = "/styles/login.css";
     private static final String LOGOUT_PAGE = "/logout";
     private static final String OAUTH2_PAGE = "/oauth2/**";
     private static final String MAIN_PAGE = "/";
@@ -22,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers(OAUTH2_PAGE).permitAll()
+                    .antMatchers(LOGIN_PAGE_CSS).permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

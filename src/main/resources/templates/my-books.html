@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Moje książki</title>
     <meta charset="UTF-8">
-    <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/requests.js}"></script>
+    <script type="text/javascript" th:src="@{/js/filter.js}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/table.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/small-menu.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/my-books.css}"/>
+    <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
+
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-1 py-lg-0 mb-4">
-<div class="container-md py-lg-0 py-2">
+    <div class="container-md py-lg-0 py-2">
 
-    <a href="/"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 189.211 211.778" enable-background="new 0 0 189.211 211.778"
-        xml:space="preserve">
+        <a href="/">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                 viewBox="0 0 189.211 211.778" enable-background="new 0 0 189.211 211.778"
+                 xml:space="preserve">
             <g>
                 <path fill-rule="evenodd" clip-rule="evenodd" fill="#FAA21B" d="M45.2,21.895c24.751,0,44.853,19.896,45.192,44.566H90.4v0.634
                     v45.2H45.2h-0.517v-0.006C19.958,112.011,0,91.886,0,67.095C0,42.131,20.237,21.895,45.2,21.895L45.2,21.895z M45.102,40.259
@@ -36,49 +46,49 @@
                 <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M99.522,142.71c8.802-0.187,15.365-4.473,18.577-9.317
                     l-0.031,61.122c-0.656,9.644-8.686,17.263-18.496,17.263v-17.263L99.522,142.71z"/>
             </g>
-    </svg></a>
+    </svg>
+        </a>
 
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse mt-3 py-2 mt-lg-2 mx-auto" id="navbarNav">
+        <div class="collapse navbar-collapse mt-3 py-2 mt-lg-2 mx-auto" id="navbarNav">
 
-        <div class="d-flex ml-auto flex-column flex-lg-row mr-lg-auto">
-            <a class="btn btn-warning mb-2 w-100 col-lg-7 mr-md-3" th:href="@{/book/add}">Dodaj książkę</a>
-            <a class="InsideContent btn btn-warning mb-2 w-100 col-lg-7" href="/">Wszystkie książki</a>
-        </div>
+            <div class="d-flex ml-auto flex-column flex-lg-row mr-lg-auto">
+                <a class="btn btn-warning mb-2 w-100 col-lg-7 mr-md-3" th:href="@{/book/add}">Dodaj książkę</a>
+                <a class="InsideContent btn btn-warning mb-2 w-100 col-lg-7" href="/">Wszystkie książki</a>
+            </div>
 
-        <div class="d-flex justify-content-between box">
-                <input class="form-control mr-2 mb-2" type="search" placeholder="Szukaj..." aria-label="Search">
+            <div class="d-flex justify-content-between box">
+                <input class="form-control mr-2 mb-2" type="search" placeholder="Szukaj..." id="search" aria-label="Search">
 
-            <a class="btn btn-primary mb-1 mb-lg-2 px-lg-4 logout__button" href="/logout">Wyloguj</a>
+                <a class="btn btn-primary mb-1 mb-lg-2 px-lg-4 logout__button" href="/logout">Wyloguj</a>
+            </div>
+
         </div>
 
     </div>
-
-</div>
 </nav>
-
 
 
 <div class="container-md mt-1">
     <p class="h3 mb-3">Prośby o wypożyczenie książki</p>
     <table class="table table-striped">
         <tr>
-            <th>ID</th>
             <th>Tytuł</th>
             <th>Wynajmujący</th>
             <th></th>
         </tr>
-        <tr th:each="book : ${books_owner}">
-            <td class="break" th:text="${book.id}">ID</td>
-            <td class="break" th:text="${book.title}">Tytuł</td>
-            <td class="break">Wynajmujący</td>
+        <tr th:each="book_request : ${books_requests}">
+            <td class="break" th:text="${book_request.book.title}">Tytuł</td>
+            <td class="break" th:text="${book_request.requester.fullName}">Wynajmujący</td>
             <td class="w-25">
-                <a href="/my-books/accept" class="btn btn-success mr-2">Zaakceptuj</a>
-                <a href="/my-books/decline" class="btn btn-danger">Odrzuć</a>
+                <a th:onclick="'javascript:acceptRentRequest(\'' + ${book_request.id} + '\');'"
+                   class="btn btn-success mr-2">Zaakceptuj</a>
+                <a th:onclick="'javascript:declineRentRequest(\'' + ${book_request.id} + '\');'" class="btn btn-danger">Odrzuć</a>
             </td>
         </tr>
     </table>
