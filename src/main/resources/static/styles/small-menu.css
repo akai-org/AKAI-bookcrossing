@@ -4,4 +4,8 @@
     input::placeholder{
         font-size: 12px;
     }
+    .small{
+        margin: 0;
+        padding: 4px;
+    }
 }
