@@ -9,6 +9,7 @@
     <script type="text/javascript" th:src="@{/js/filter.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/small-menu.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/table.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/my-books.css}"/>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -72,14 +73,19 @@
             <th>Właściciel</th>
             <th>Obecny Właściciel</th>
             <th>Szczegóły</th>
+            <th>Status książki</th>
         </tr>
         <tr th:each="book : ${books}">
-            <td class="break" th:text="${book.title}">Tytuł</td>
+            <td class="break title" th:text="${book.title}">Tytuł</td>
             <td class="break" th:text="${book.author}">Autor</td>
             <td class="break mw" th:text="${book.description}">Opis</td>
             <td class="break" th:text="${book.owner?.fullName}">Właściciel</td>
             <td class="break" th:text="${book.reader?.fullName}">Obecny Właściciel</td>
             <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+            <td>
+                <a class="btn btn-info small" th:if="${isAvailable}" href="">Wypożycz</a>
+                <span th:else>Niedostępna</span>
+            </td>
         </tr>
     </table>
 
