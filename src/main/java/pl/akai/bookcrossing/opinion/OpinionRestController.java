@@ -18,4 +18,10 @@ public class OpinionRestController {
         opinionBean.insertOpinion(opinion);
     }
 
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateOpinion(@PathVariable int id, @RequestBody Opinion opinion) {
+        opinion.setId(id);
+        opinionBean.updateOpinion(opinion);
+    }
 }
