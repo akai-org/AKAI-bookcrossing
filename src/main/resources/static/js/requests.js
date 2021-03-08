@@ -111,7 +111,8 @@ async function addOpinion(bookId) {
             },
             data: JSON.stringify({
                 description: description,
-                rating: Number(rating)
+                rating: Number(rating),
+                bookId: bookId
             })
         });
         alert("Dodanie opinii zakończone sukcesem");
