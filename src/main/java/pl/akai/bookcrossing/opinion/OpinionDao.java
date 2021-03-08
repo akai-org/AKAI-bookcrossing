@@ -10,6 +10,8 @@ public interface OpinionDao {
 
     List<Opinion> getOpinionsByBookId(int bookId);
 
+    Opinion getOpinionById(int id);
+
     void insertOpinion(Opinion opinion);
 
     void updateOpinion(Opinion opinion);
