@@ -14,8 +14,8 @@ public class OpinionRestController {
 
     @PostMapping("/book/{id}/add-opinion")
     @ResponseStatus(HttpStatus.CREATED)
-    public void opinionSubmit(@PathVariable int id, @RequestBody Opinion opinion) {
-        opinionBean.insertOpinion(opinion, id);
+    public void opinionSubmit(@RequestBody Opinion opinion) {
+        opinionBean.insertOpinion(opinion, opinion.getBookId());
     }
 
 }
