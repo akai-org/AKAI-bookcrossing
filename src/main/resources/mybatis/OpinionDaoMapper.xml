@@ -20,7 +20,7 @@
 
     <insert id="insertOpinion">
         INSERT INTO tb_opinion (rating, description, book_id, author_id)
-        VALUES (#{opinion.rating}, #{opinion.description}, #{bookId}, #{opinion.author.id});
+        VALUES (#{opinion.rating}, #{opinion.description}, #{opinion.bookId}, #{opinion.author.id});
     </insert>
 
     <update id="updateOpinion">

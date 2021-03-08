@@ -18,8 +18,8 @@ public class OpinionDaoImpl implements OpinionDao {
     }
 
     @Override
-    public void insertOpinion(Opinion opinion, int bookId) {
-        opinionMapper.insertOpinion(opinion, bookId);
+    public void insertOpinion(Opinion opinion) {
+        opinionMapper.insertOpinion(opinion);
     }
 
     @Override

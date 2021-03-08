@@ -18,7 +18,7 @@ public class OpinionBean {
     public void insertOpinion(Opinion opinion) {
         User user = currentUserService.getCurrentUser();
         opinion.setAuthor(user);
-        opinionDao.insertOpinion(opinion, opinion.getBookId());
+        opinionDao.insertOpinion(opinion);
     }
 
     public List<Opinion> getOpinionsByBookId(Integer id) {
