@@ -9,10 +9,10 @@ import pl.akai.bookcrossing.model.Opinion;
 @RequestMapping("/opinion")
 @RequiredArgsConstructor
 public class OpinionRestController {
-   
+
     private final OpinionBean opinionBean;
 
-    @PostMapping("/book/{id}/add-opinion")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void opinionSubmit(@RequestBody Opinion opinion) {
         opinionBean.insertOpinion(opinion, opinion.getBookId());

@@ -2,7 +2,7 @@ const availableULR = `http://${window.location.host}/my-books/change-available`
 const declineRentRequestULR = `http://${window.location.host}/my-books/decline`
 const acceptRentRequestULR = `http://${window.location.host}/my-books/accept`
 const sendRentRequestULR = `http://${window.location.host}/book/rent`
-const addOpinionULR = `http://${window.location.host}/book`
+const addOpinionULR = `http://${window.location.host}/opinion`
 
 const headers = {};
 const csrfHeader = $("meta[name='_csrf_header']").attr("content");
@@ -102,7 +102,7 @@ async function addOpinion(bookId) {
     const rating = document.getElementById('rating').value;
     try {
         const result = await $.ajax({
-            url: `${addOpinionULR}/${bookId}/add-opinion`,
+            url: `${addOpinionULR}`,
             type: 'POST',
             contentType: 'application/json',
             headers: headers,
