@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookRentRequest;
-import pl.akai.bookcrossing.model.Tag;
 import pl.akai.bookcrossing.model.User;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookBean {
 
-    private final BookDao bookDao;
+    private final BookDaoMapper bookDao;
     private final CurrentUserService currentUserService;
 
     public void insertBook(Book book) {
@@ -30,10 +29,6 @@ public class BookBean {
 
     public Book getBookById(Integer id) {
         return bookDao.getBookById(id);
-    }
-
-    public List<Tag> getTagsByBookId(int id) {
-        return bookDao.getTagsByBookId(id);
     }
 
     public List<Book> getBooksByTagId(int id) {

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pl.akai.bookcrossing.ebook.EbookDaoMapper">
+
+    <resultMap id="baseEbookMap" type="Ebook">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="google_id" property="googleId" jdbcType="VARCHAR" />
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="fullEbookMap" extends="baseEbookMap" type="Ebook">
+        <collection column="id" property="tagList" javaType="ArrayList"
+                    ofType="Tag" select="pl.akai.bookcrossing.tag.TagDaoMapper.getTagsByResourceId"/>
+    </resultMap>
+
+    <select id="getAllBooks" resultMap="fullEbookMap">
+        SELECT *
+        FROM tb_ebook;
+    </select>
+
+    <select id="getEbookById" resultMap="fullEbookMap">
+        SELECT *
+        FROM tb_ebook
+        WHERE id = #{id};
+    </select>
+
+    <insert id="insertEbook" statementType = "CALLABLE">
+        {CALL INSERT_EBOOK(#{ebook.googleId, jdbcType = VARCHAR, mode = IN},
+                        #{ebook.title, jdbcType = VARCHAR, mode = IN},
+                        #{ebook.author, jdbcType = VARCHAR, mode = IN},
+                        #{ebook.description, jdbcType = VARCHAR, mode = IN},
+                        #{ebook.url, jdbcType = VARCHAR, mode = IN},
+                        #{ebook.id, jdbcType = INTEGER, mode = OUT}
+            )}
+    </insert>
+
+</mapper>

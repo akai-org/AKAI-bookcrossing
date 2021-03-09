@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OpinionBean {
 
-    private final OpinionDao opinionDao;
+    private final OpinionDaoMapper opinionDao;
     private final CurrentUserService currentUserService;
 
     public void insertOpinion(Opinion opinion) {

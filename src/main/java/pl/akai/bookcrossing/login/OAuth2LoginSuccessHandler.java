@@ -16,7 +16,7 @@ import java.io.IOException;
 public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 
-    private final UserDao userDao;
+    private final UserDaoMapper userDao;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -30,7 +30,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
                     .fullName(oAuth2User.getName())
                     .email(oAuth2User.getEmail())
                     .build();
-            userDao.insertNewUser(user);
+            userDao.insertUser(user);
         }
         super.onAuthenticationSuccess(request, response, authentication);
     }

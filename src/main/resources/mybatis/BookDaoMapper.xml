@@ -15,12 +15,8 @@
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
         <association column="reader_id" property="reader" javaType="User"
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
-        <collection column="id" property="tagList" javaType="ArrayList" ofType="Tag" select="getTagsByBookId"/>
-    </resultMap>
-
-    <resultMap id="bookTagsMap" type="Tag">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <collection column="id" property="tagList" javaType="ArrayList"
+                    ofType="Tag" select="pl.akai.bookcrossing.tag.TagDaoMapper.getTagsByResourceId"/>
     </resultMap>
 
     <resultMap id="baseBookRentRequestMap" type="BookRentRequest">
@@ -62,13 +58,6 @@
         SELECT *
         FROM tb_book
         WHERE reader_id = #{user_id};
-    </select>
-
-    <select id="getTagsByBookId" resultMap="bookTagsMap">
-        SELECT t.name
-        FROM tb_resource_tags rt
-                 INNER JOIN tb_tag t ON (t.id = rt.tag_id)
-        WHERE rt.resource_id = #{id};
     </select>
 
     <select id="getBooksByTagId" resultMap="fullBookMap">

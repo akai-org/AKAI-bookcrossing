@@ -10,7 +10,7 @@ import pl.akai.bookcrossing.model.User;
 @RequiredArgsConstructor
 public class CurrentUserService {
 
-    private final UserDao userDao;
+    private final UserDaoMapper userDao;
 
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

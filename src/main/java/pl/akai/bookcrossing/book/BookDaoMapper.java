@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookRentRequest;
-import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
 
@@ -21,8 +20,6 @@ public interface BookDaoMapper {
     List<Book> getBooksByOwnerId(@Param("user_id") int id);
 
     List<Book> getBooksByReaderId(@Param("user_id") int id);
-
-    List<Tag> getTagsByBookId(@Param("id") int id);
 
     List<Book> getBooksByTagId(@Param("id") int id);
 

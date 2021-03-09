@@ -97,7 +97,7 @@ async function sendRentRequest(bookId) {
     return false;
 }
 
-async function addOpinion(bookId) {
+async function addOpinion(resourceId) {
     const description = document.getElementById('description').value;
     const rating = document.getElementById('rating').value;
     try {
@@ -112,7 +112,7 @@ async function addOpinion(bookId) {
             data: JSON.stringify({
                 description: description,
                 rating: Number(rating),
-                bookId: bookId
+                resourceId: Number(resourceId)
             })
         });
         alert("Dodanie opinii zakończone sukcesem");

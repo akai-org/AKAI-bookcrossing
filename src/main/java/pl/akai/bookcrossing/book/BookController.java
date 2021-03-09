@@ -58,7 +58,7 @@ public class BookController {
     @GetMapping("/book/{id}")
     public String bookDetails(@PathVariable(name = "id") Integer id, Model model) {
         Book book = bookBean.getBookById(id);
-        model.addAttribute("tags", bookBean.getTagsByBookId(id));
+        model.addAttribute("tags", tagBean.getTagsByResourceId(id));
         List<Opinion> opinions = opinionBean.getOpinionsByBookId(id);
         model.addAttribute("book", book);
         model.addAttribute("opinions", opinions);

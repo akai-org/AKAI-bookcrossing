@@ -10,11 +10,13 @@ import java.util.List;
 @Mapper
 public interface TagDaoMapper {
 
-    void insertTag(@Param("tag") Tag tag);
-
     List<Tag> getAllTags();
 
+    List<Tag> getTagsByResourceId(@Param("id") int id);
+
     Tag getTagByName(@Param("name") String tagName);
+
+    void insertTag(@Param("tag") Tag tag);
 
     void insertResourceTag(@Param("resourceId") int resourceId, @Param("tagId") int tagId);
 
