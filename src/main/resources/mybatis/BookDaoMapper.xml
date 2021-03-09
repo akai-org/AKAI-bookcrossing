@@ -42,13 +42,13 @@
         WHERE id = #{id}
     </select>
 
-    <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id" statementType = "CALLABLE">
-        {call ADD_BOOK(#{book.title, jdbcType = VARCHAR, mode = IN},
-                       #{book.author, jdbcType = VARCHAR, mode = IN},
-                       #{book.description, jdbcType = VARCHAR, mode = IN},
-                       #{book.owner.id, jdbcType = INTEGER, mode = IN},
-                       #{book.reader.id, jdbcType = INTEGER, mode = IN},
-                       #{book.id, jdbcType = INTEGER, mode = OUT}
+    <insert id="insertBook" statementType = "CALLABLE">
+        {CALL INSERT_BOOK(#{book.title, jdbcType = VARCHAR, mode = IN},
+                        #{book.author, jdbcType = VARCHAR, mode = IN},
+                        #{book.description, jdbcType = VARCHAR, mode = IN},
+                        #{book.owner.id, jdbcType = INTEGER, mode = IN},
+                        #{book.reader.id, jdbcType = INTEGER, mode = IN},
+                        #{book.id, jdbcType = INTEGER, mode = OUT}
             )}
     </insert>
 

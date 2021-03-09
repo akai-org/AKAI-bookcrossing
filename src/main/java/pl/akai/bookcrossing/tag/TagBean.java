@@ -26,11 +26,11 @@ public class TagBean {
                 Tag tag = new Tag();
                 tag.setName(name.trim());
                 Tag existingTag = tagDao.getTagByName(tag.getName());
-                if (existingTag == null && tag.getName().length() != 0) {
+                if (existingTag.getId() == null && tag.getName().length() != 0) {
                     tagDao.insertTag(tag);
                     tagDao.insertResourceTag(bookFormResponse.getId(), tag.getId());
                 } else {
-                    bookFormResponse.addTagId(tag.getId());
+                    bookFormResponse.addTagIdToExistingTagsList(existingTag.getId());
                 }
             }
         }

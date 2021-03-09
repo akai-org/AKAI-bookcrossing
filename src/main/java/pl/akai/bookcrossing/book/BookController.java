@@ -49,8 +49,8 @@ public class BookController {
     @PostMapping("/book/add")
     public String addBookSubmit(@ModelAttribute BookFormResponse bookFormResponse, Model model) {
         bookBean.insertBook(bookFormResponse);
-        tagBean.insertExistingTags(bookFormResponse);
         tagBean.insertNewTags(bookFormResponse);
+        tagBean.insertExistingTags(bookFormResponse);
         model.addAttribute("book", bookFormResponse);
         return "redirect:/book/" + bookFormResponse.getId();
     }

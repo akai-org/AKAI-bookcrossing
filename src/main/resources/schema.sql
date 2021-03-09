@@ -79,14 +79,14 @@ CREATE TABLE IF NOT EXISTS tb_book_user_request
     FOREIGN KEY (book_id) REFERENCES tb_book (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;;
 
-DROP PROCEDURE IF EXISTS ADD_BOOK;;
+DROP PROCEDURE IF EXISTS INSERT_BOOK;;
 
-CREATE PROCEDURE ADD_BOOK (IN v_title VARCHAR(255) CHARSET utf8,
-                           IN v_author VARCHAR(255) CHARSET utf8,
-                           IN v_description TEXT CHARSET utf8,
-                           IN v_owner_id INTEGER,
-                           IN v_reader_id INTEGER,
-                           OUT v_book_id INTEGER)
+CREATE PROCEDURE INSERT_BOOK (IN v_title VARCHAR(255) CHARSET utf8,
+                            IN v_author VARCHAR(255) CHARSET utf8,
+                            IN v_description TEXT CHARSET utf8,
+                            IN v_owner_id INTEGER,
+                            IN v_reader_id INTEGER,
+                            OUT v_book_id INTEGER)
 BEGIN
 INSERT INTO tb_resource(type)
 VALUES ('book');
