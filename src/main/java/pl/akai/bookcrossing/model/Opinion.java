@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Opinion {
 
     private int id;
-    private int bookId;
+    private int resourceId;
     private int rating;
     private String description;
     private User author;
