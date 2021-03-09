@@ -18,9 +18,15 @@
         WHERE resource_id = #{id};
     </select>
 
+    <select id="getOpinionById" resultMap="extendedOpinionMap">
+        SELECT *
+        FROM tb_opinion
+        WHERE id = #{id}
+    </select>
+
     <insert id="insertOpinion">
-        INSERT INTO tb_opinion (rating, description, resource_id, author_id)
-        VALUES (#{opinion.rating}, #{opinion.description}, #{resourceId}, #{opinion.author.id});
+        INSERT INTO tb_opinion (rating, description, book_id, author_id)
+        VALUES (#{opinion.rating}, #{opinion.description}, #{opinion.bookId}, #{opinion.author.id});
     </insert>
 
     <update id="updateOpinion">

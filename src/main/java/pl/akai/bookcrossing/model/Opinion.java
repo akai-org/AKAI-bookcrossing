@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Opinion {
+
     private int id;
+    private int bookId;
     private int rating;
     private String description;
     private User author;

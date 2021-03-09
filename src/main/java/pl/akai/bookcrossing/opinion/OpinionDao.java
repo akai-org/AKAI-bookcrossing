@@ -9,8 +9,10 @@ import java.util.List;
 public interface OpinionDao {
 
     List<Opinion> getOpinionsByResourceId(int resourceId);
+  
+    Opinion getOpinionById(int id);
 
-    void insertOpinion(Opinion opinion, int resourceId);
+    void insertOpinion(Opinion opinion);
 
     void updateOpinion(Opinion opinion);
 }
