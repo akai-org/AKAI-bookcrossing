@@ -94,3 +94,19 @@ INSERT INTO tb_book (id, title, author, description, owner_id, reader_id, availa
 VALUES (LAST_INSERT_ID(), v_title, v_author, v_description, v_owner_id, v_reader_id, 1);
 SELECT LAST_INSERT_ID() INTO v_book_id;
 END;;
+
+DROP PROCEDURE IF EXISTS INSERT_EBOOK;;
+
+CREATE PROCEDURE INSERT_EBOOK (IN v_google_id VARCHAR(255) CHARSET utf8,
+                            IN v_title VARCHAR(255) CHARSET utf8,
+                            IN v_author VARCHAR(255) CHARSET utf8,
+                            IN v_description TEXT CHARSET utf8,
+                            IN v_url VARCHAR(2083) CHARSET utf8,
+                            OUT v_ebook_id INTEGER)
+BEGIN
+INSERT INTO tb_resource(type)
+VALUES ('book');
+INSERT INTO tb_book (id, google_id, title, author, description, url)
+VALUES (LAST_INSERT_ID(), v_google_id, v_title, v_author, v_description, v_url);
+SELECT LAST_INSERT_ID() INTO v_ebook_id;
+END;;
