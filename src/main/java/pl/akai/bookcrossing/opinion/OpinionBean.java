@@ -15,13 +15,13 @@ public class OpinionBean {
     private final OpinionDao opinionDao;
     private final CurrentUserService currentUserService;
 
-    public void insertOpinion(Opinion opinion, Integer bookId) {
+    public void insertOpinion(Opinion opinion, Integer resourceId) {
         User user = currentUserService.getCurrentUser();
         opinion.setAuthor(user);
-        opinionDao.insertOpinion(opinion, bookId);
+        opinionDao.insertOpinion(opinion, resourceId);
     }
 
     public List<Opinion> getOpinionsByBookId(Integer id) {
-        return opinionDao.getOpinionsByBookId(id);
+        return opinionDao.getOpinionsByResourceId(id);
     }
 }

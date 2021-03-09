@@ -50,26 +50,6 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void insertTag(Tag tag) {
-        bookMapper.insertTag(tag);
-    }
-
-    @Override
-    public List<Tag> getAllTags() {
-        return bookMapper.getAllTags();
-    }
-
-    @Override
-    public Tag getTagByName(String tagName) {
-        return bookMapper.getTagByName(tagName);
-    }
-
-    @Override
-    public void insertBookTag(int bookId, int tagId) {
-        bookMapper.insertBookTag(bookId, tagId);
-    }
-
-    @Override
     public void updateReader(int bookId, int readerId) {
         bookMapper.updateReader(bookId, readerId);
     }

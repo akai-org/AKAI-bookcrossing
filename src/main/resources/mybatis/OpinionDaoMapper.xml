@@ -12,15 +12,15 @@
         <association column="author_id"  property="author" javaType="User" select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
     </resultMap>
 
-    <select id="getOpinionsByBookId" resultMap="extendedOpinionMap">
-        SELECT book_id, rating, description, author_id
+    <select id="getOpinionsByResourceId" resultMap="extendedOpinionMap">
+        SELECT resource_id, rating, description, author_id
         FROM tb_opinion
-        WHERE book_id = #{id};
+        WHERE resource_id = #{id};
     </select>
 
     <insert id="insertOpinion">
-        INSERT INTO tb_opinion (rating, description, book_id, author_id)
-        VALUES (#{opinion.rating}, #{opinion.description}, #{bookId}, #{opinion.author.id});
+        INSERT INTO tb_opinion (rating, description, resource_id, author_id)
+        VALUES (#{opinion.rating}, #{opinion.description}, #{resourceId}, #{opinion.author.id});
     </insert>
 
     <update id="updateOpinion">

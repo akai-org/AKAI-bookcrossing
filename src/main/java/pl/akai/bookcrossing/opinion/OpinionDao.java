@@ -8,9 +8,9 @@ import java.util.List;
 @Repository
 public interface OpinionDao {
 
-    List<Opinion> getOpinionsByBookId(int bookId);
+    List<Opinion> getOpinionsByResourceId(int resourceId);
 
-    void insertOpinion(Opinion opinion, int bookId);
+    void insertOpinion(Opinion opinion, int resourceId);
 
     void updateOpinion(Opinion opinion);
 }

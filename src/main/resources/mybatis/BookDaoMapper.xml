@@ -42,9 +42,14 @@
         WHERE id = #{id}
     </select>
 
-    <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
-        INSERT INTO tb_book (title, author, description, owner_id, reader_id, available)
-        VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id}, 1);
+    <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id" statementType = "CALLABLE">
+        {call ADD_BOOK(#{book.title, jdbcType = VARCHAR, mode = IN},
+                       #{book.author, jdbcType = VARCHAR, mode = IN},
+                       #{book.description, jdbcType = VARCHAR, mode = IN},
+                       #{book.owner.id, jdbcType = INTEGER, mode = IN},
+                       #{book.reader.id, jdbcType = INTEGER, mode = IN},
+                       #{book.id, jdbcType = INTEGER, mode = OUT}
+            )}
     </insert>
 
     <select id="getBooksByOwnerId" resultMap="fullBookMap">
@@ -61,39 +66,17 @@
 
     <select id="getTagsByBookId" resultMap="bookTagsMap">
         SELECT t.name
-        FROM tb_book_tags bt
-                 INNER JOIN tb_tag t ON (t.id = bt.tag_id)
-        WHERE bt.book_id = #{id};
+        FROM tb_resource_tags rt
+                 INNER JOIN tb_tag t ON (t.id = rt.tag_id)
+        WHERE rt.resource_id = #{id};
     </select>
 
     <select id="getBooksByTagId" resultMap="fullBookMap">
         SELECT b.*
-        FROM tb_book_tags bt
-                 INNER JOIN tb_book b on bt.book_id = b.id
-        WHERE bt.tag_id = #{id};
+        FROM tb_resource_tags rt
+                 INNER JOIN tb_book b on rt.resource_id = b.id
+        WHERE rt.tag_id = #{id};
     </select>
-
-    <insert id="insertTag" useGeneratedKeys="true" keyProperty="tag.id" keyColumn="id">
-        INSERT INTO tb_tag (name)
-        VALUES (upper(#{tag.name}));
-    </insert>
-
-    <select id="getAllTags" resultMap="bookTagsMap">
-        SELECT *
-        FROM tb_tag;
-    </select>
-
-    <select id="getTagByName" resultMap="bookTagsMap">
-        SELECT *
-        FROM tb_tag
-        WHERE name like upper(#{name})
-        LIMIT 1;
-    </select>
-
-    <insert id="insertBookTag">
-        INSERT INTO tb_book_tags (book_id, tag_id)
-        VALUES (#{bookId}, #{tagId});
-    </insert>
 
     <update id="updateReader">
         UPDATE tb_book
