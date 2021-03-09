@@ -16,7 +16,7 @@ public class BookFormResponse extends Book {
     private Set<Integer> existingTagsIdList = new HashSet<>();
     private String newTagsNames;
 
-    public void addTagId(Integer tagId) {
+    public void addTagIdToExistingTagsList(Integer tagId) {
         this.existingTagsIdList.add(tagId);
     }
 }

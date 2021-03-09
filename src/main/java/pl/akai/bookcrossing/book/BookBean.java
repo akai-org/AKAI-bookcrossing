@@ -40,22 +40,6 @@ public class BookBean {
         return bookDao.getBooksByTagId(id);
     }
 
-    void insertTag(Tag tag) {
-        bookDao.insertTag(tag);
-    }
-
-    List<Tag> getAllTags() {
-        return bookDao.getAllTags();
-    }
-
-    Tag getTagByName(String tagName) {
-        return bookDao.getTagByName(tagName);
-    }
-
-    void insertBookTag(int bookId, int tagId) {
-        bookDao.insertBookTag(bookId, tagId);
-    }
-
     public List<Book> getBooksReadByCurrentUser() {
         User user = currentUserService.getCurrentUser();
         return bookDao.getBooksByReaderId(user.getId());

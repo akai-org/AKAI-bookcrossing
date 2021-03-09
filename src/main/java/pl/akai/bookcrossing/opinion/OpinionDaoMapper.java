@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface OpinionDaoMapper {
 
-    List<Opinion> getOpinionsByBookId(@Param("id") int id);
+    List<Opinion> getOpinionsByResourceId(@Param("id") int id);
 
     Opinion getOpinionById(@Param("id") int id);
 

@@ -18,8 +18,6 @@ public interface BookDaoMapper {
 
     void insertBook(@Param("book") Book book);
 
-    void insertTag(@Param("tag") Tag tag);
-
     List<Book> getBooksByOwnerId(@Param("user_id") int id);
 
     List<Book> getBooksByReaderId(@Param("user_id") int id);
@@ -27,12 +25,6 @@ public interface BookDaoMapper {
     List<Tag> getTagsByBookId(@Param("id") int id);
 
     List<Book> getBooksByTagId(@Param("id") int id);
-
-    List<Tag> getAllTags();
-
-    Tag getTagByName(@Param("name") String tagName);
-
-    void insertBookTag(@Param("bookId") int bookId, @Param("tagId") int tagId);
 
     void updateReader(@Param("bookId") int bookId, @Param("readerId") int readerId);
 

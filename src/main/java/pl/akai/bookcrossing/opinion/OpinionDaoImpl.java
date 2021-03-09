@@ -13,8 +13,8 @@ public class OpinionDaoImpl implements OpinionDao {
     private final OpinionDaoMapper opinionMapper;
 
     @Override
-    public List<Opinion> getOpinionsByBookId(int bookId) {
-        return opinionMapper.getOpinionsByBookId(bookId);
+    public List<Opinion> getOpinionsByResourceId(int bookId) {
+        return opinionMapper.getOpinionsByResourceId(bookId);
     }
 
     @Override

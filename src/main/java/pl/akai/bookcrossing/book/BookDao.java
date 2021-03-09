@@ -22,14 +22,6 @@ public interface BookDao {
 
     List<Book> getBooksByTagId(int id);
 
-    void insertTag(Tag tag);
-
-    List<Tag> getAllTags();
-
-    Tag getTagByName(String tagName);
-
-    void insertBookTag(int bookId, int tagId);
-
     void updateReader(int bookId, int readerId);
 
     void insertBookUserRequest(BookRentRequest bookRentRequest);

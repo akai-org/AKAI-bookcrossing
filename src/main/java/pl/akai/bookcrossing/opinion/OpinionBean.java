@@ -24,7 +24,7 @@ public class OpinionBean {
     }
 
     public List<Opinion> getOpinionsByBookId(Integer id) {
-        return opinionDao.getOpinionsByBookId(id);
+        return opinionDao.getOpinionsByResourceId(id);
     }
 
     public void updateOpinion(Opinion newOpinion) {

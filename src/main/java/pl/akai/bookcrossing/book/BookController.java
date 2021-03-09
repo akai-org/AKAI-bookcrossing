@@ -12,6 +12,7 @@ import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.BookRentRequest;
 import pl.akai.bookcrossing.model.Opinion;
 import pl.akai.bookcrossing.opinion.OpinionBean;
+import pl.akai.bookcrossing.tag.TagBean;
 
 import java.util.List;
 
@@ -41,15 +42,15 @@ public class BookController {
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
         model.addAttribute("book", new BookFormResponse());
-        model.addAttribute("tags", bookBean.getAllTags());
+        model.addAttribute("tags", tagBean.getAllTags());
         return "form";
     }
 
     @PostMapping("/book/add")
     public String addBookSubmit(@ModelAttribute BookFormResponse bookFormResponse, Model model) {
         bookBean.insertBook(bookFormResponse);
-        tagBean.insertExistingTags(bookFormResponse);
         tagBean.insertNewTags(bookFormResponse);
+        tagBean.insertExistingTags(bookFormResponse);
         model.addAttribute("book", bookFormResponse);
         return "redirect:/book/" + bookFormResponse.getId();
     }

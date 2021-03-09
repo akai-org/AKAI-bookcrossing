@@ -8,8 +8,8 @@ import java.util.List;
 @Repository
 public interface OpinionDao {
 
-    List<Opinion> getOpinionsByBookId(int bookId);
-
+    List<Opinion> getOpinionsByResourceId(int resourceId);
+  
     Opinion getOpinionById(int id);
 
     void insertOpinion(Opinion opinion);
