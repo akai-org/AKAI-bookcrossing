@@ -11,7 +11,9 @@ public interface OpinionDaoMapper {
 
     List<Opinion> getOpinionsByBookId(@Param("id") int id);
 
-    void insertOpinion(@Param("opinion") Opinion opinion, @Param("bookId") int bookId);
+    Opinion getOpinionById(@Param("id") int id);
+
+    void insertOpinion(@Param("opinion") Opinion opinion);
 
     void updateOpinion(@Param("opinion") Opinion opinion);
 }
