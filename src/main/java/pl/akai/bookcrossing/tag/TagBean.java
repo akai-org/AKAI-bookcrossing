@@ -12,10 +12,14 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class TagBean {
 
-    private final TagDao tagDao;
+    private final TagDaoMapper tagDao;
 
     public List<Tag> getAllTags() {
         return tagDao.getAllTags();
+    }
+
+    public List<Tag> getTagsByResourceId(int id) {
+        return tagDao.getTagsByResourceId(id);
     }
 
     public void insertNewTags(BookFormResponse bookFormResponse) {
