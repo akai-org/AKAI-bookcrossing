@@ -104,9 +104,9 @@
             <td class="break" th:text="${book.owner?.fullName}">Właściciel</td>
             <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
             <td>
-                <a th:if="${book.available}" class="btn btn-info"
+                <a th:if="${book.available}" class="btn btn-info w40"
                    th:onclick="'javascript:changeAvailability(\'' + ${book.id} + '\', \'' + ${book.available} + '\');'">Zablokuj</a>
-                <a th:unless="${book.available}" class="btn btn-info"
+                <a th:unless="${book.available}" class="btn btn-info w40"
                    th:onclick="'javascript:changeAvailability(\'' + ${book.id} + '\', \'' + ${book.available} + '\');'">Udostępnij</a>
             </td>
         </tr>
