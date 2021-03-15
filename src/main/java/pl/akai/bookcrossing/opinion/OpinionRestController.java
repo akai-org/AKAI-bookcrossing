@@ -24,4 +24,10 @@ public class OpinionRestController {
         opinion.setId(id);
         opinionBean.updateOpinion(opinion);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteOpinion(@PathVariable int id) {
+        opinionBean.deleteOpinion(id);
+    }
 }
