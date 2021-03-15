@@ -16,4 +16,6 @@ public interface OpinionDaoMapper {
     void insertOpinion(@Param("opinion") Opinion opinion);
 
     void updateOpinion(@Param("opinion") Opinion opinion);
+
+    void deleteOpinionById(@Param("id") int id);
 }
