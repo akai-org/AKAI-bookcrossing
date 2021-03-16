@@ -38,6 +38,17 @@ public class OpinionBean {
         opinionDao.updateOpinion(newOpinion);
     }
 
+    public void deleteOpinion(Integer id) {
+        var toDelete = opinionDao.getOpinionById(id);
+        if (toDelete == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        if (isCurrentUserTheAuthor(toDelete)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+        opinionDao.deleteOpinionById(id);
+    }
+
     private boolean isCurrentUserTheAuthor(Opinion opinion) {
         return opinion.getAuthor()
                       .getId() != currentUserService.getCurrentUser()

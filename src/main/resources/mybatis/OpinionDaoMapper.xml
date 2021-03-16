@@ -36,4 +36,9 @@
         WHERE id = #{opinion.id};
     </update>
 
+    <delete id="deleteOpinionById">
+        DELETE FROM tb_opinion
+        WHERE id = #{id};
+    </delete>
+
 </mapper>
