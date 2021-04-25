@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import pl.akai.bookcrossing.model.Ebook;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper
 public interface EbookDaoMapper {
@@ -13,6 +14,8 @@ public interface EbookDaoMapper {
 
     Ebook getEbookById(@Param("id") int id);
 
-    void insertEbook(@Param("book") Ebook ebook);
+    Set<String> getGoogleIds();
+
+    void insertEbook(@Param("ebook") Ebook ebook);
 }
  

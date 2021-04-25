@@ -1,4 +1,5 @@
 server.port=8080
+spring.application.name="AKAI-Bookcrossing"
 spring.datasource.username=sa
 spring.datasource.password=q1w2e3r4
 spring.datasource.url=jdbc:mysql://localhost:3306/bookcrossing
@@ -13,4 +14,8 @@ spring.security.oauth2.client.registration.google.scope=email,profile
 
 #MyBatis Configuration
 mybatis.mapper-locations=classpath*:/mybatis/*Mapper.xml
-mybatis.type-aliases-package = pl.akai.bookcrossing.model
+mybatis.type-aliases-package=pl.akai.bookcrossing.model
+
+#Google Drive Configuration
+spring.application.google-drive.source=
+spring.application.google-drive.credentials=/credentials.json
