@@ -43,3 +43,4 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 /target/
 src/main/resources/application.properties
+/src/main/resources/credentials.json

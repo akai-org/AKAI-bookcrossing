@@ -106,7 +106,7 @@ CREATE PROCEDURE INSERT_EBOOK (IN v_google_id VARCHAR(255) CHARSET utf8,
 BEGIN
 INSERT INTO tb_resource(type)
 VALUES ('book');
-INSERT INTO tb_book (id, google_id, title, author, description, url)
+INSERT INTO tb_ebook (id, google_id, title, author, description, url)
 VALUES (LAST_INSERT_ID(), v_google_id, v_title, v_author, v_description, v_url);
 SELECT LAST_INSERT_ID() INTO v_ebook_id;
 END;;

@@ -27,6 +27,11 @@
         WHERE id = #{id};
     </select>
 
+    <select id="getGoogleIds" resultType="string">
+        SELECT google_id
+        FROM tb_ebook;
+    </select>
+
     <insert id="insertEbook" statementType = "CALLABLE">
         {CALL INSERT_EBOOK(#{ebook.googleId, jdbcType = VARCHAR, mode = IN},
                         #{ebook.title, jdbcType = VARCHAR, mode = IN},
