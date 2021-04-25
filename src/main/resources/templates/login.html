@@ -4,8 +4,9 @@
     <title>AKAI Bookcrossing</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/login.css}"/>
     <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
 </head>
@@ -13,7 +14,7 @@
 <div class="container text-center d-flex flex-column align-items-center justify-content-center">
 
     <h1 class="font-weight-bold">Witaj na Bookcrossingu <span class="text-warning">AKAI</span></h1>
-    <h2>Aby przejśc dalej zaloguj się przy użyciu konta AKAI</span></h2>
+    <h2>Aby przejśc dalej zaloguj się przy użyciu konta AKAI</h2>
 
     <div class="mt-4">
         <a class="text-info h4" th:href="@{/oauth2/authorization/google}">Login with Google</a>

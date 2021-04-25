@@ -15,6 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String LOGOUT_PAGE = "/logout";
     private static final String OAUTH2_PAGE = "/oauth2/**";
     private static final String MAIN_PAGE = "/";
+    private static final String WEBJARS = "/webjars/**";
     private final CustomOAuth2UserService oAuth2UserService;
     private final OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
@@ -24,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers(OAUTH2_PAGE).permitAll()
                     .antMatchers(LOGIN_PAGE_CSS).permitAll()
+                    .antMatchers(WEBJARS).permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

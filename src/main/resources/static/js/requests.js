@@ -1,8 +1,8 @@
-const availableULR = `http://${window.location.host}/my-books/change-available`
-const declineRentRequestULR = `http://${window.location.host}/my-books/decline`
-const acceptRentRequestULR = `http://${window.location.host}/my-books/accept`
-const sendRentRequestULR = `http://${window.location.host}/book/rent`
-const addOpinionULR = `http://${window.location.host}/opinion`
+const availableULR = `https://${window.location.host}/my-books/change-available`
+const declineRentRequestULR = `https://${window.location.host}/my-books/decline`
+const acceptRentRequestULR = `https://${window.location.host}/my-books/accept`
+const sendRentRequestULR = `https://${window.location.host}/book/rent`
+const addOpinionULR = `https://${window.location.host}/opinion`
 
 const headers = {};
 const csrfHeader = $("meta[name='_csrf_header']").attr("content");
