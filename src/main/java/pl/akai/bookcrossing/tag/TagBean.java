@@ -2,7 +2,7 @@ package pl.akai.bookcrossing.tag;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.akai.bookcrossing.model.BookFormResponse;
+import pl.akai.bookcrossing.model.ResourceFormResponse;
 import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
@@ -22,8 +22,8 @@ public class TagBean {
         return tagDao.getTagsByResourceId(id);
     }
 
-    public void insertNewTags(BookFormResponse bookFormResponse) {
-        String newTags = bookFormResponse.getNewTagsNames();
+    public void insertNewTags(ResourceFormResponse resourceFormResponse) {
+        String newTags = resourceFormResponse.getNewTagsNames();
         if (newTags != null) {
             String[] tagNames = newTags.split(",");
             for (String name : tagNames) {
@@ -32,19 +32,19 @@ public class TagBean {
                 Tag existingTag = tagDao.getTagByName(tag.getName());
                 if (existingTag == null && tag.getName().length() != 0) {
                     tagDao.insertTag(tag);
-                    tagDao.insertResourceTag(bookFormResponse.getId(), tag.getId());
+                    tagDao.insertResourceTag(resourceFormResponse.getId(), tag.getId());
                 } else if (existingTag != null) {
-                    bookFormResponse.addTagIdToExistingTagsList(existingTag.getId());
+                    resourceFormResponse.addTagIdToExistingTagsList(existingTag.getId());
                 }
             }
         }
     }
 
-    public void insertExistingTags(BookFormResponse bookFormResponse) {
-        Set<Integer> existingTagsIdList = bookFormResponse.getExistingTagsIdList();
+    public void insertExistingTags(ResourceFormResponse resourceFormResponse) {
+        Set<Integer> existingTagsIdList = resourceFormResponse.getExistingTagsIdList();
         if (existingTagsIdList != null) {
             for (Integer tagId : existingTagsIdList) {
-                tagDao.insertResourceTag(bookFormResponse.getId(), tagId);
+                tagDao.insertResourceTag(resourceFormResponse.getId(), tagId);
             }
         }
     }

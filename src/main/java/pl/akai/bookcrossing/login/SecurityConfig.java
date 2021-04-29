@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/img/google-button-hover.png",
             "/img/google-button-focus.png",
             "/img/favicon.svg",
-            "/styles/login.css",
+            "/styles/views/login.css",
             "/webjars/**"
     };
 

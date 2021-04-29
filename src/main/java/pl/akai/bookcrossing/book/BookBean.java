@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookRentRequest;
+import pl.akai.bookcrossing.model.ResourceFormResponse;
 import pl.akai.bookcrossing.model.User;
 
 import java.util.List;
@@ -16,11 +17,12 @@ public class BookBean {
     private final BookDaoMapper bookDao;
     private final CurrentUserService currentUserService;
 
-    public void insertBook(Book book) {
-        User user = currentUserService.getCurrentUser();
+    public int insertBook(Book book) {
+        var user = currentUserService.getCurrentUser();
         book.setOwner(user);
         book.setReader(user);
         bookDao.insertBook(book);
+        return book.getId();
     }
 
     public List<Book> getAllBooks() {
