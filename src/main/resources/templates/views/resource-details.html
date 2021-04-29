@@ -8,23 +8,30 @@
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/requests.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/book-details.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.css} ">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/views/resource-details.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/navbar.css} ">
     <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
 </head>
 <body class="bg-secondary">
 
+<div th:replace="fragments/navbar :: navbar"></div>
 
-<div class="container bg-secondary p-5">
+<div class="container bg-secondary px-5">
+    <h2 class="display-5 mb-4" th:text="${resource.title}"></h2>
+    <p class="lead" th:text="'Autor: ' + ${resource.author}"></p>
+    <p class="lead" th:text="'Opis: ' + ${resource.description}"></p>
+    <p class="lead" th:text="'Tagi książki:'"></p>
+    <div th:each="tag : ${tags}"
+         th:text="${tag?.name}"
+         class="d-inline tag">
+    </div>
 
-    <h2 class="display-5 mb-4" th:text="${book.title}"/>
-    <p class="lead" th:text="'Autor: ' + ${book.author}"/>
-    <p class="lead" th:text="'Opis: ' + ${book.description}"/>
     <hr class="my-4">
     <br>
 
-    <div class="box d-flex flex-column justify-content-between flex-lg-row">
+    <div class="d-flex flex-column justify-content-between flex-lg-row">
 
         <form action="#"
               class="form w-100">
@@ -49,7 +56,7 @@
 
                 <div class="inputs">
                     <a class="btn btn-warning col-md-3 col-lg-2 mb-2 mr-2"
-                       th:onclick="'javascript:addOpinion(\'' + ${book.id} + '\');'">Dodaj</a>
+                       th:onclick="'javascript:addOpinion(\'' + ${resource.id} + '\');'">Dodaj</a>
                     <input class="btn btn-warning col-md-3 col-lg-2 mb-2" type="reset" value="Reset"/>
                 </div>
             </div>
@@ -57,31 +64,14 @@
 
         <div class="box__box2 w-100">
             <h3>Opinie</h3>
-            <table class="opinions table table-striped">
-                <tr>
-                    <th>Użytkownik</th>
-                    <th>Ocena</th>
-                    <th>Opis</th>
-                </tr>
-                <tr th:each="opinion : ${opinions}">
-                    <td th:text="${opinion.author.fullName}">Użytkownik</td>
-                    <td th:text="${opinion.rating}">Ocena</td>
-                    <td class="text-break" th:text="${opinion.description}">Opis</td>
-                </tr>
-            </table>
+
+            <div th:each="opinion : ${opinions}">
+                <div th:replace="fragments/opinion :: opinion(opinion=${opinion}, user=${user})"></div>
+            </div>
+
         </div>
     </div>
 
-    <table class="tags table">
-        <tr>
-            <th style="padding-left: 0;">Tagi książki</th>
-        </tr>
-        <tr th:each="tag : ${tags}" class="d-inline">
-            <td th:text="${tag?.name}"></td>
-        </tr>
-    </table>
-
-    <a class="text-primary h5" th:href="@{/}">Wroć do strony głównej</a>
 </div>
 </body>
 </html>

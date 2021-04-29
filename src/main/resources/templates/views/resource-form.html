@@ -7,7 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
     <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
 </head>
 
@@ -16,7 +15,7 @@
     <h1 class="display-5 text-center mb-4"><i class="fas fa-book-open text-warning"></i> Formularz Dodania <span
             class="text-warning">Książki</span></h1>
 
-    <form class="my-4" action="#" method="post" th:action="@{/book/add}">
+    <form class="my-4" action="#" method="post" th:action="@{/books/add}">
 
         <div class="form-group">
             <p>Tytuł: </p><input class="form-control" required th:name="title" th:value="${book.title}" type="text"/>

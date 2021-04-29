@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table th:fragment="books-table (ebooks)"
+       class="table table-striped bookList" id="ebook-list">
+    <tr class="header-text-size">
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Szczegóły</th>
+        <th>Link</th>
+    </tr>
+    <tr th:each="ebook : ${ebooks}" class="table-text-size">
+        <td th:text="${ebook.title}">Tytuł</td>
+        <td th:text="${ebook.author}">Autor</td>
+        <td><a class="btn btn-primary table-button-size" th:href="@{/ebooks/{id}(id = ${ebook.id})}">Szczegóły</a></td>
+        <td><a class="btn btn-primary table-button-size" th:href="@{${ebook.url}}">Szczegóły</a></td>
+    </tr>
+</table>
+</body>
+</html>

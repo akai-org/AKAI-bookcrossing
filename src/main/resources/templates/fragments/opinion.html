@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opinion Fragment</title>
+</head>
+<body>
+<div th:fragment="opinion (opinion, user)">
+    <div class="d-flex justify-content-between">
+        <div th:text="${opinion.author.fullName}">Użytkownik></div>
+        <div th:if="${opinion.author.id == user.id}">
+            <i class="fas fa-save"></i>
+            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-pencil-alt"></i>
+        </div>
+    </div>
+    <div th:text="${'Ocena: ' + opinion.rating}">Ocena</div>
+    <div class="text-break" th:text="${opinion.description}">Opis</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books Table</title>
+</head>
+<body>
+<table th:fragment="books-table (books)"
+       class="table table-striped bookList" id="book-list">
+    <tr class="header-text-size">
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Właściciel</th>
+        <th>Obecny Właściciel</th>
+        <th>Szczegóły</th>
+        <th>Status książki</th>
+    </tr>
+    <tr th:each="book : ${books}" class="table-text-size">
+        <td th:text="${book.title}">Tytuł</td>
+        <td th:text="${book.author}">Autor</td>
+        <td th:text="${book.owner?.fullName}">Właściciel</td>
+        <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
+        <td><a class="btn btn-primary table-button-size" th:href="@{/books/{id}(id = ${book.id})}">Szczegóły</a></td>
+        <td>
+            <a class="btn btn-primary table-button-size" th:if="${book.available}"
+               th:onclick="'javascript:sendRentRequest(\'' + ${book.id} + '\');'">Wypożycz</a>
+            <span th:unless="${book.available}">Niedostępna</span>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
