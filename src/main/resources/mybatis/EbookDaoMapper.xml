@@ -16,7 +16,7 @@
                     ofType="Tag" select="pl.akai.bookcrossing.tag.TagDaoMapper.getTagsByResourceId"/>
     </resultMap>
 
-    <select id="getAllBooks" resultMap="fullEbookMap">
+    <select id="getAllEbooks" resultMap="fullEbookMap">
         SELECT *
         FROM tb_ebook;
     </select>

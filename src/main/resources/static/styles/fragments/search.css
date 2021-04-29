@@ -1,3 +1,12 @@
+.search-size {
+    font-size: min(1rem, 3vw);
+    padding: min(.375rem, 1vw) min(.75rem, 1vw);;
+}
+
+.search-text-size {
+    font-size: min(1.75rem, 4vw);
+}
+
 @media (max-width: 992px) {
     .w-md-50{
         width: 50%!important;
