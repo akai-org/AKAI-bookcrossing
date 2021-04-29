@@ -6,16 +6,25 @@
 </head>
 <body>
 <div th:fragment="opinion (opinion, user)">
+    <hr class="my-4">
     <div class="d-flex justify-content-between">
-        <div th:text="${opinion.author.fullName}">Użytkownik></div>
+        <p class="lead" th:inline="text">
+            <span class="property">[[${opinion.author.fullName}]]</span>
+        </p>
         <div th:if="${opinion.author.id == user.id}">
-            <i class="fas fa-save"></i>
-            <i class="fas fa-trash-alt"></i>
             <i class="fas fa-pencil-alt"></i>
+            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-save d-none"></i>
         </div>
     </div>
-    <div th:text="${'Ocena: ' + opinion.rating}">Ocena</div>
-    <div class="text-break" th:text="${opinion.description}">Opis</div>
+    <p class="lead" th:inline="text">
+        <span class="property">Ocena: </span>
+        [[${opinion.rating}]]
+    </p>
+    <div th:if="${opinion.description != null}">
+        <div class="lead property" th:text="'Komentarz:'"></div>
+        <div class="text-break" th:text="${opinion.description}">Opis</div>
+    </div>
 </div>
 </body>
 </html>

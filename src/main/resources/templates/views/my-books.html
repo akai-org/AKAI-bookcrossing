@@ -9,10 +9,9 @@
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/requests.js}"></script>
     <script type="text/javascript" th:src="@{/js/filter.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/table.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/small-menu.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/my-books.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/navbar.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/table.css}"/>
     <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
 
 </head>
@@ -23,59 +22,66 @@
 <div class="container-md mt-1">
     <p class="h3 mb-3">Prośby o wypożyczenie książki</p>
     <table class="table table-striped">
-        <tr>
+        <tr class="header-text-size">
             <th>Tytuł</th>
             <th>Autor</th>
             <th>Wynajmujący</th>
             <th>Decyzja</th>
         </tr>
-        <tr th:each="book_request : ${books_requests}">
-            <td class="break" th:text="${book_request.book.title}">Tytuł</td>
-            <td class="break" th:text="${book_request.book.author}">Tytuł</td>
-            <td class="break" th:text="${book_request.requester.fullName}">Wynajmujący</td>
+        <tr th:each="book_request : ${books_requests}" class="table-text-size">
+            <td th:text="${book_request.book.title}">Tytuł</td>
+            <td th:text="${book_request.book.author}">Tytuł</td>
+            <td th:text="${book_request.requester.fullName}">Wynajmujący</td>
             <td class="w-25">
                 <a th:onclick="'javascript:acceptRentRequest(\'' + ${book_request.id} + '\');'"
-                   class="btn btn-success mr-2">Zaakceptuj</a>
-                <a th:onclick="'javascript:declineRentRequest(\'' + ${book_request.id} + '\');'" class="btn btn-danger">Odrzuć</a>
+                   class="btn btn-success table-button-size mr-2">Zaakceptuj</a>
+                <a th:onclick="'javascript:declineRentRequest(\'' + ${book_request.id} + '\');'"
+                   class="btn btn-danger table-button-size">Odrzuć</a>
             </td>
         </tr>
     </table>
 
     <p class="h3 my-4">Moje książki udostępnione innym</p>
     <table class="table table-striped" id="books-owner">
-        <tr>
+        <tr class="header-text-size">
             <th>Tytuł</th>
             <th>Autor</th>
             <th>Obecny Właściciel</th>
             <th>Szczegóły</th>
         </tr>
-        <tr th:each="book : ${books_owner}">
-            <td class="break title" th:text="${book.title}">Tytuł</td>
-            <td class="break" th:text="${book.author}">Autor</td>
-            <td class="break" th:text="${book.reader?.fullName}">Obecny Właściciel</td>
-            <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+        <tr th:each="book : ${books_owner}" class="table-text-size">
+            <td class="title" th:text="${book.title}">Tytuł</td>
+            <td th:text="${book.author}">Autor</td>
+            <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
+            <td><a class="btn btn-primary table-button-size" th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
         </tr>
     </table>
 
     <p class="h3 my-4">Ksiażki udostępnione mi przez innych</p>
     <table class="table table-striped" id="books-reader">
-        <tr>
+        <tr class="header-text-size">
             <th>Tytuł</th>
             <th>Autor</th>
             <th>Właściciel</th>
             <th>Szczegóły</th>
             <th>Udostępnij</th>
         </tr>
-        <tr th:each="book : ${books_reader}">
-            <td class="break title" th:text="${book.title}">Tytuł</td>
-            <td class="break" th:text="${book.author}">Autor</td>
-            <td class="break" th:text="${book.owner?.fullName}">Właściciel</td>
-            <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+        <tr th:each="book : ${books_reader}" class="table-text-size">
+            <td class="title" th:text="${book.title}">Tytuł</td>
+            <td th:text="${book.author}">Autor</td>
+            <td th:text="${book.owner?.fullName}">Właściciel</td>
+            <td><a class="btn btn-primary table-button-size" th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
             <td>
-                <a th:if="${book.available}" class="btn btn-info w40"
-                   th:onclick="'javascript:changeAvailability(\'' + ${book.id} + '\', \'' + ${book.available} + '\');'">Zablokuj</a>
-                <a th:unless="${book.available}" class="btn btn-info w40"
-                   th:onclick="'javascript:changeAvailability(\'' + ${book.id} + '\', \'' + ${book.available} + '\');'">Udostępnij</a>
+                <a th:if="${book.available}"
+                   class="btn btn-primary table-button-size"
+                   th:onclick="'javascript:changeAvailability(\'' + ${book.id} + '\', \'' + ${book.available} + '\');'">
+                    Zablokuj
+                </a>
+                <a th:unless="${book.available}"
+                   class="btn btn-primary table-button-size"
+                   th:onclick="'javascript:changeAvailability(\'' + ${book.id} + '\', \'' + ${book.available} + '\');'">
+                    Udostępnij
+                </a>
             </td>
         </tr>
     </table>
