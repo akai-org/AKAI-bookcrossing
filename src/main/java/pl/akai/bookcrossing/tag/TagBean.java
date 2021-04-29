@@ -2,7 +2,7 @@ package pl.akai.bookcrossing.tag;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.akai.bookcrossing.model.ResourceFormResponse;
+import pl.akai.bookcrossing.model.ResourceForm;
 import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
@@ -22,8 +22,8 @@ public class TagBean {
         return tagDao.getTagsByResourceId(id);
     }
 
-    public void insertNewTags(ResourceFormResponse resourceFormResponse) {
-        String newTags = resourceFormResponse.getNewTagsNames();
+    public void insertNewTags(ResourceForm resourceForm) {
+        String newTags = resourceForm.getNewTagsNames();
         if (newTags != null) {
             String[] tagNames = newTags.split(",");
             for (String name : tagNames) {
@@ -32,19 +32,19 @@ public class TagBean {
                 var existingTag = tagDao.getTagByName(tag.getName());
                 if (existingTag == null && tag.getName().length() != 0) {
                     tagDao.insertTag(tag);
-                    tagDao.insertResourceTag(resourceFormResponse.getId(), tag.getId());
+                    tagDao.insertResourceTag(resourceForm.getId(), tag.getId());
                 } else if (existingTag != null) {
-                    resourceFormResponse.addTagIdToExistingTagsList(existingTag.getId());
+                    resourceForm.addTagIdToExistingTagsList(existingTag.getId());
                 }
             }
         }
     }
 
-    public void insertExistingTags(ResourceFormResponse resourceFormResponse) {
-        Set<Integer> existingTagsIdList = resourceFormResponse.getExistingTagsIdList();
+    public void insertExistingTags(ResourceForm resourceForm) {
+        Set<Integer> existingTagsIdList = resourceForm.getExistingTagsIdList();
         if (existingTagsIdList != null) {
             for (Integer tagId : existingTagsIdList) {
-                tagDao.insertResourceTag(resourceFormResponse.getId(), tagId);
+                tagDao.insertResourceTag(resourceForm.getId(), tagId);
             }
         }
     }

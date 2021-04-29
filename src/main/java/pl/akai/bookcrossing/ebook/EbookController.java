@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.akai.bookcrossing.login.CurrentUserService;
-import pl.akai.bookcrossing.model.ResourceFormResponse;
+import pl.akai.bookcrossing.model.ResourceForm;
 import pl.akai.bookcrossing.model.Opinion;
 import pl.akai.bookcrossing.opinion.OpinionBean;
 import pl.akai.bookcrossing.tag.TagBean;
@@ -42,12 +42,21 @@ public class EbookController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editEbook(@ModelAttribute ResourceFormResponse resourceFormResponse, Model model) {
-        return "redirect:/ebooks/" + resourceFormResponse.getId();
+    public String editBookForm(@PathVariable(name = "id") Integer id, Model model) {
+        var ebook = ebookBean.getEbookById(id);
+        model.addAttribute("resource", new ResourceForm(ebook));
+        model.addAttribute("tags", tagBean.getAllTags());
+        model.addAttribute("formTitle", "Formularz edycji ebooka");
+        model.addAttribute("endpoint", String.format("/ebooks/%d/edit", id));
+        return "views/resource-form";
     }
 
     @PostMapping("/{id}/edit")
-    public String editBookSubmit(@ModelAttribute ResourceFormResponse resourceFormResponse, Model model) {
-        return "redirect:/ebooks/" + resourceFormResponse.getId();
+    public String editBookSubmit(@PathVariable(name = "id") Integer id, @ModelAttribute ResourceForm resourceForm) {
+//        var bookId = bookBean.insertBook(resourceForm.toBook());
+//        resourceForm.setId(bookId);
+//        tagBean.insertNewTags(resourceForm);
+//        tagBean.insertExistingTags(resourceForm);
+        return "redirect:/ebooks/" + resourceForm.getId();
     }
 }

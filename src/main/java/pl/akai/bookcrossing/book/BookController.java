@@ -3,14 +3,11 @@ package pl.akai.bookcrossing.book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.akai.bookcrossing.login.CurrentUserService;
-import pl.akai.bookcrossing.model.ResourceFormResponse;
 import pl.akai.bookcrossing.model.BookRentRequest;
 import pl.akai.bookcrossing.model.Opinion;
+import pl.akai.bookcrossing.model.ResourceForm;
 import pl.akai.bookcrossing.opinion.OpinionBean;
 import pl.akai.bookcrossing.tag.TagBean;
 
@@ -42,18 +39,20 @@ public class BookController {
 
     @GetMapping("/books/add")
     public String addBookForm(Model model) {
-        model.addAttribute("book", new ResourceFormResponse());
+        model.addAttribute("resource", new ResourceForm());
         model.addAttribute("tags", tagBean.getAllTags());
+        model.addAttribute("formTitle", "Formularz dodania książki");
+        model.addAttribute("endpoint", "/books/add");
         return "views/resource-form";
     }
 
     @PostMapping("/books/add")
-    public String addBookSubmit(@ModelAttribute ResourceFormResponse resourceFormResponse) {
-        var bookId = bookBean.insertBook(resourceFormResponse.toBook());
-        resourceFormResponse.setId(bookId);
-        tagBean.insertNewTags(resourceFormResponse);
-        tagBean.insertExistingTags(resourceFormResponse);
-        return "redirect:/books/" + resourceFormResponse.getId();
+    public String addBookSubmit(@ModelAttribute ResourceForm resourceForm) {
+        var bookId = bookBean.insertBook(resourceForm.toBook());
+        resourceForm.setId(bookId);
+        tagBean.insertNewTags(resourceForm);
+        tagBean.insertExistingTags(resourceForm);
+        return "redirect:/books/" + resourceForm.getId();
     }
 
     @GetMapping("/books/{id}")
@@ -67,5 +66,25 @@ public class BookController {
         model.addAttribute("opinion", new Opinion());
         model.addAttribute("user", currentUser);
         return "views/resource-details";
+    }
+
+    @GetMapping("/books/{id}/edit")
+    public String editBookForm(@PathVariable(name = "id") Integer id, Model model) {
+        var book = bookBean.getBookById(id);
+        model.addAttribute("resource", new ResourceForm(book));
+        model.addAttribute("tags", tagBean.getAllTags());
+        model.addAttribute("formTitle", "Formularz edycji książki");
+        model.addAttribute("endpoint", String.format("/books/%d/edit", id));
+
+        return "views/resource-form";
+    }
+
+    @PostMapping("/books/{id}/edit")
+    public String editBookSubmit(@PathVariable(name = "id") Integer id, @ModelAttribute ResourceForm resourceForm) {
+//        var bookId = bookBean.insertBook(resourceForm.toBook());
+//        resourceForm.setId(bookId);
+//        tagBean.insertNewTags(resourceForm);
+//        tagBean.insertExistingTags(resourceForm);
+        return "redirect:/books/" + resourceForm.getId();
     }
 }
