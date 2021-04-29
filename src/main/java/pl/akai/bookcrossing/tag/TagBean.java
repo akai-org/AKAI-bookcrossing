@@ -27,9 +27,9 @@ public class TagBean {
         if (newTags != null) {
             String[] tagNames = newTags.split(",");
             for (String name : tagNames) {
-                Tag tag = new Tag();
+                var tag = new Tag();
                 tag.setName(name.trim());
-                Tag existingTag = tagDao.getTagByName(tag.getName());
+                var existingTag = tagDao.getTagByName(tag.getName());
                 if (existingTag == null && tag.getName().length() != 0) {
                     tagDao.insertTag(tag);
                     tagDao.insertResourceTag(resourceFormResponse.getId(), tag.getId());

@@ -46,7 +46,7 @@ public class GoogleDriveService {
                 if (isFolder(file)) {
                     newFolders.add(file.getId());
                 } else if (isFileInDatabase(googleIds, file)) {
-                    Ebook ebook = Ebook.builder()
+                    var ebook = Ebook.builder()
                             .googleId(file.getId())
                             .title(file.getName())
                             .url(file.getWebViewLink())

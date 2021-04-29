@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Opinion;
-import pl.akai.bookcrossing.model.User;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class OpinionBean {
     private final CurrentUserService currentUserService;
 
     public void insertOpinion(Opinion opinion) {
-        User user = currentUserService.getCurrentUser();
+        var user = currentUserService.getCurrentUser();
         opinion.setAuthor(user);
         opinionDao.insertOpinion(opinion);
     }

@@ -5,8 +5,6 @@ import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookRentRequest;
-import pl.akai.bookcrossing.model.ResourceFormResponse;
-import pl.akai.bookcrossing.model.User;
 
 import java.util.List;
 
@@ -38,22 +36,22 @@ public class BookBean {
     }
 
     public List<Book> getBooksReadByCurrentUser() {
-        User user = currentUserService.getCurrentUser();
+        var user = currentUserService.getCurrentUser();
         return bookDao.getBooksByReaderId(user.getId());
     }
 
     public List<Book> getBooksOwnedByCurrentUser() {
-        User user = currentUserService.getCurrentUser();
+        var user = currentUserService.getCurrentUser();
         return bookDao.getBooksByOwnerId(user.getId());
     }
 
     public void updateReader(Integer requestId) {
-        BookRentRequest request = bookDao.getBookRentRequestsById(requestId);
+        var request = bookDao.getBookRentRequestsById(requestId);
         bookDao.updateReader(request.getBook().getId(), request.getRequester().getId());
     }
 
     public boolean insertBookUserRequest(int bookId) {
-        BookRentRequest bookRentRequest = BookRentRequest.builder()
+        var bookRentRequest = BookRentRequest.builder()
                 .requester(currentUserService.getCurrentUser())
                 .book(bookDao.getBookById(bookId))
                 .build();
@@ -65,7 +63,7 @@ public class BookBean {
     }
 
     public List<BookRentRequest> getBookRentRequestsByReaderId() {
-        User user = currentUserService.getCurrentUser();
+        var user = currentUserService.getCurrentUser();
         return bookDao.getBookRentRequestsByReaderId(user.getId());
     }
 
@@ -78,7 +76,7 @@ public class BookBean {
     }
 
     public void processBookRentRequestAcceptation(int requestId) {
-        BookRentRequest request = bookDao.getBookRentRequestsById(requestId);
+        var request = bookDao.getBookRentRequestsById(requestId);
         updateIsAvailable(request.getBook().getId(), false);
         updateReader(requestId);
         deleteBookRentRequestsById(requestId);
