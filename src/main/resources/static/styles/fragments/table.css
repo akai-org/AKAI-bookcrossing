@@ -8,6 +8,6 @@
 }
 
 .table-button-size {
-    font-size: min(.9rem, 1.8vw);
-    padding: min(.375rem, 1vw) min(.75rem, 1vw);
+    font-size: min(.875rem, 1.5vw);
+    padding: min(.25rem, 0.8vw) min(.5rem, 0.8vw);
 }

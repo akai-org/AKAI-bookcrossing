@@ -53,7 +53,7 @@
             <td class="title" th:text="${book.title}">Tytuł</td>
             <td th:text="${book.author}">Autor</td>
             <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
-            <td><a class="btn btn-primary table-button-size" th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+            <td><a class="btn btn-primary table-button-size" th:href="@{/books/{id}(id = ${book.id})}">Szczegóły</a></td>
         </tr>
     </table>
 
@@ -70,7 +70,7 @@
             <td class="title" th:text="${book.title}">Tytuł</td>
             <td th:text="${book.author}">Autor</td>
             <td th:text="${book.owner?.fullName}">Właściciel</td>
-            <td><a class="btn btn-primary table-button-size" th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+            <td><a class="btn btn-primary table-button-size" th:href="@{/books/{id}(id = ${book.id})}">Szczegóły</a></td>
             <td>
                 <a th:if="${book.available}"
                    class="btn btn-primary table-button-size"

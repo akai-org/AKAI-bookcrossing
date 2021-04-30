@@ -22,7 +22,7 @@ public class EbookController {
     private final TagBean tagBean;
     private final CurrentUserService currentUserService;
 
-    @GetMapping("")
+    @GetMapping
     public String ebooksList(Model model) {
         model.addAttribute("ebooks", ebookBean.getAllEbooks());
         return "views/ebooks-list";
