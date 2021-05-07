@@ -1,10 +1,4 @@
-import {handleError, handleResponse} from "./response-handlers.js";
-
 const addOpinionULR = `/opinion`;
-
-const headers = {'Content-Type': 'application/json'};
-const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
-headers[csrfHeader] = document.querySelector("meta[name='_csrf']").getAttribute("content");
 
 function addOpinion(resourceId) {
     const description = document.getElementById('description').value;
@@ -27,5 +21,3 @@ function addOpinion(resourceId) {
         "Dodanie opinii zakończone niepowodzeniem"))
         .catch(handleError);
 }
-
-window.addOpinion = addOpinion;

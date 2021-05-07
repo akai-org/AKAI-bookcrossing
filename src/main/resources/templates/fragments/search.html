@@ -5,11 +5,11 @@
     <title>Search</title>
 </head>
 <body>
-<div th:fragment="search (title)"
+<div th:fragment="search (title, id)"
      class="d-flex justify-content-between align-content-center">
-    <p class="h3 mb-2 w-25 w-md-50 col-lg-3 search-text-size" th:value="${title}">Spis książek</p>
-    <input aria-label="Search" class="form-control mr-2 mb-2 w-25 w-md-50 search-size" id="search" name="keyword"
-           placeholder="Szukaj..." type="text">
+    <p class="h3 mb-2 w-md-50 search-text-size" th:text="${title}">Spis książek</p>
+    <input aria-label="Search" class="form-control mr-2 mb-2 w-25 w-md-50 search-size"
+           th:id="${id + '-search'}" name="keyword" placeholder="Szukaj..." type="text">
 </div>
 </body>
 </html>

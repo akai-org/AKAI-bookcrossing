@@ -8,6 +8,7 @@
   <meta name="_csrf" th:content="${_csrf.token}"/>
   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
   <script type="text/javascript" th:src="@{/js/filter.js}"></script>
+  <script type="text/javascript" th:src="@{/js/build-ebooks-list-table.js}"></script>
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
   <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/search.css}"/>
   <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/navbar.css}"/>
@@ -17,12 +18,12 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container-md mt-1">
-  <div th:replace="fragments/search :: search('Spis ebooków')"></div>
+  <div th:replace="fragments/search :: search(title='Spis ebooków', id='ebooks-list')"></div>
   <div th:replace="fragments/ebooks-table :: ebooks-table(${ebooks})"></div>
 </div>
 <script th:inline="javascript">
   const books = [[${ebooks}]];
-  search(books, 'ebook-list')
+  search(books, 'ebooks-list', buildEbooksTable)
 </script>
 </body>
 </html>

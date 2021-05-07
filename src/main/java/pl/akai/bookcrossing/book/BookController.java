@@ -25,13 +25,13 @@ public class BookController {
     @GetMapping("/")
     public String booksList(Model model) {
         model.addAttribute("books", bookBean.getAllBooks());
-        return "views/index";
+        return "views/books-list";
     }
 
     @GetMapping("/my-books")
     public String myBooksList(Model model) {
         List<BookRentRequest> requests = bookBean.getBookRentRequestsByReaderId();
-        model.addAttribute("books_requests", requests);
+        model.addAttribute("book_requests", requests);
         model.addAttribute("books_owner", bookBean.getBooksOwnedByCurrentUser());
         model.addAttribute("books_reader", bookBean.getBooksReadByCurrentUser());
         return "views/my-books";
@@ -75,7 +75,6 @@ public class BookController {
         model.addAttribute("tags", tagBean.getAllTags());
         model.addAttribute("formTitle", "Formularz edycji książki");
         model.addAttribute("endpoint", String.format("/books/%d/edit", id));
-
         return "views/resource-form";
     }
 

@@ -1,10 +1,4 @@
-import {handleError} from "./response-handlers.js";
-
 const sendRentRequestULR = `/book/rent`
-
-const headers = {'Content-Type': 'application/json'};
-const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content")
-headers[csrfHeader] = document.querySelector("meta[name='_csrf']").getAttribute("content")
 
 function sendRentRequest(bookId) {
     fetch(
@@ -32,5 +26,3 @@ function handleResponse(response) {
         alert("Wysłanie prośby o wypożyczenie zakończone niepowodzeniem");
     }
 }
-
-window.sendRentRequest = sendRentRequest;

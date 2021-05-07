@@ -8,7 +8,9 @@
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/filter.js}"></script>
-    <script type="module" th:src="@{/js/rent-requests.js}"></script>
+    <script type="text/javascript" th:src="@{/js/build-books-list-table.js}"></script>
+    <script type="text/javascript" th:src="@{/js/requests-common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/rent-requests.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/navbar.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/search.css}"/>
@@ -18,12 +20,12 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container-md mt-1">
-    <div th:replace="fragments/search :: search('Spis książek')"></div>
+    <div th:replace="fragments/search :: search(title='Spis książek', id='books-list')"></div>
     <div th:replace="fragments/books-table :: books-table(${books})"></div>
 </div>
 <script th:inline="javascript">
     const books = [[${books}]];
-    search(books, 'book-list')
+    search(books, 'books-list', buildBooksListTable)
 </script>
 </body>
 </html>

@@ -1,12 +1,6 @@
-import {handleError, handleResponse} from "./response-handlers.js";
-
 const availableULR = '/my-books/change-available'
 const declineRentRequestULR = '/my-books/decline'
 const acceptRentRequestULR = '/my-books/accept'
-
-const headers = {'Content-Type': 'application/json'};
-const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content")
-headers[csrfHeader] = document.querySelector("meta[name='_csrf']").getAttribute("content")
 
 function acceptRentRequest(requestId) {
     fetch(
@@ -59,7 +53,3 @@ function changeAvailability(bookId, isAvailable) {
             "Zmiana statusu zakończona niepowodzeniem"))
         .catch(handleError);
 }
-
-window.acceptRentRequest = acceptRentRequest;
-window.declineRentRequest = declineRentRequest;
-window.changeAvailability = changeAvailability;

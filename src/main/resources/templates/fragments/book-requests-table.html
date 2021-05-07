@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table th:fragment="book-requests-table (book_requests)"
+        class="table table-striped" id="book-requests">
+    <tr class="header-text-size">
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Wynajmujący</th>
+        <th>Decyzja</th>
+    </tr>
+    <tr th:each="book_request : ${book_requests}" class="table-text-size">
+        <td th:text="${book_request.book.title}">Tytuł</td>
+        <td th:text="${book_request.book.author}">Tytuł</td>
+        <td th:text="${book_request.requester.fullName}">Wynajmujący</td>
+        <td class="w-25">
+            <a th:onclick="'javascript:acceptRentRequest(\'' + ${book_request.id} + '\');'"
+               class="btn btn-success table-button-size mr-2">Zaakceptuj</a>
+            <a th:onclick="'javascript:declineRentRequest(\'' + ${book_request.id} + '\');'"
+               class="btn btn-danger table-button-size">Odrzuć</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
