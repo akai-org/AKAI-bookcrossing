@@ -17,7 +17,7 @@
         <td th:text="${ebook.title}" class="text-break">Tytuł</td>
         <td th:text="${ebook.author}">Autor</td>
         <td><a class="btn btn-primary table-button-size" th:href="@{/ebooks/{id}(id = ${ebook.id})}">Szczegóły</a></td>
-        <td><a class="btn btn-primary table-button-size" th:href="@{${ebook.url}}">Szczegóły</a></td>
+        <td><a class="btn btn-primary table-button-size" th:href="@{${ebook.url}}">Czytaj</a></td>
     </tr>
 </table>
 </body>

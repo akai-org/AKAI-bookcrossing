@@ -7,7 +7,7 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/requests.js}"></script>
+    <script type="module" th:src="@{/js/opinion-requests.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.css} ">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/views/resource-details.css}"/>
@@ -84,7 +84,7 @@
             </div>
         </form>
 
-        <div class="w-100">
+        <div class="w-100 mb-4">
             <h3 class="mb-2">Opinie:</h3>
             <div th:each="opinion : ${opinions}">
                 <div th:replace="fragments/opinion :: opinion(opinion=${opinion}, user=${user})"></div>
