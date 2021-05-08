@@ -53,7 +53,7 @@
         <div class="form-group mt-4">
             <label for="tags" class="form-label">Wybierz tagi:</label>
             <select id="tags"
-                    class="form-control"
+                    class="form-select"
                     multiple="multiple"
                     th:field="${resource.existingTagsIdList}">
                 <option th:each="tag : ${tags}"

@@ -22,7 +22,7 @@ function createRatingSelect(oldValue) {
     const ratingValues = [...Array(5).keys()].map(value => value + 1);
     const select = createSelect(ratingValues);
     select.value = oldValue;
-    select.classList.add('form-control');
+    select.classList.add('form-select');
     select.classList.add('d-inline-block');
     select.classList.add('ms-2');
     select.classList.add('fit-content');
