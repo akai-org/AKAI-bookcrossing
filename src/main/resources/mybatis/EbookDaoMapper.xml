@@ -42,4 +42,12 @@
             )}
     </insert>
 
+    <update id="updateEbook">
+        UPDATE tb_ebook
+        SET title = #{ebook.title},
+            author = #{ebook.author},
+            description = #{ebook.description}
+        WHERE id = #{ebook.id};
+    </update>
+
 </mapper>

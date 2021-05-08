@@ -17,5 +17,8 @@ public interface EbookDaoMapper {
     Set<String> getGoogleIds();
 
     void insertEbook(@Param("ebook") Ebook ebook);
+
+    void updateEbook(@Param("ebook") Ebook ebook);
+
 }
  

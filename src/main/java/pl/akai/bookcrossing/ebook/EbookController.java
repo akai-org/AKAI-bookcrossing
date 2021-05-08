@@ -42,21 +42,19 @@ public class EbookController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editBookForm(@PathVariable(name = "id") Integer id, Model model) {
+    public String editEbookForm(@PathVariable(name = "id") Integer id, Model model) {
         var ebook = ebookBean.getEbookById(id);
         model.addAttribute("resource", new ResourceForm(ebook));
         model.addAttribute("tags", tagBean.getAllTags());
         model.addAttribute("formTitle", "Formularz edycji ebooka");
-        model.addAttribute("endpoint", String.format("/ebooks/%d/edit", id));
+        model.addAttribute("endpoint", String.format("/ebooks/%d", id));
         return "views/resource-form";
     }
 
-    @PostMapping("/{id}/edit")
+    @PostMapping("/{id}")
     public String editBookSubmit(@PathVariable(name = "id") Integer id, @ModelAttribute ResourceForm resourceForm) {
-//        var bookId = bookBean.insertBook(resourceForm.toBook());
-//        resourceForm.setId(bookId);
-//        tagBean.insertNewTags(resourceForm);
-//        tagBean.insertExistingTags(resourceForm);
+        ebookBean.updateEbook(resourceForm.toEbook());
+        tagBean.updateTags(resourceForm);
         return "redirect:/ebooks/" + resourceForm.getId();
     }
 }

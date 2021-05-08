@@ -1,4 +1,4 @@
-const sendRentRequestULR = `/book/rent`
+const sendRentRequestULR = `/books/rent`
 
 function sendRentRequest(bookId) {
     fetch(

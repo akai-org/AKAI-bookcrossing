@@ -20,4 +20,8 @@ public class EbookBean {
         return ebookDao.getEbookById(id);
     }
 
+    public void updateEbook(Ebook ebook) {
+        ebookDao.updateEbook(ebook);
+    }
+
 }

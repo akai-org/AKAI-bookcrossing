@@ -42,11 +42,11 @@ public class BookController {
         model.addAttribute("resource", new ResourceForm());
         model.addAttribute("tags", tagBean.getAllTags());
         model.addAttribute("formTitle", "Formularz dodania książki");
-        model.addAttribute("endpoint", "/books/add");
+        model.addAttribute("endpoint", "/books");
         return "views/resource-form";
     }
 
-    @PostMapping("/books/add")
+    @PostMapping("/books")
     public String addBookSubmit(@ModelAttribute ResourceForm resourceForm) {
         var bookId = bookBean.insertBook(resourceForm.toBook());
         resourceForm.setId(bookId);
@@ -74,16 +74,14 @@ public class BookController {
         model.addAttribute("resource", new ResourceForm(book));
         model.addAttribute("tags", tagBean.getAllTags());
         model.addAttribute("formTitle", "Formularz edycji książki");
-        model.addAttribute("endpoint", String.format("/books/%d/edit", id));
+        model.addAttribute("endpoint", String.format("/books/%d", id));
         return "views/resource-form";
     }
 
-    @PostMapping("/books/{id}/edit")
+    @PostMapping("/books/{id}")
     public String editBookSubmit(@PathVariable(name = "id") Integer id, @ModelAttribute ResourceForm resourceForm) {
-//        var bookId = bookBean.insertBook(resourceForm.toBook());
-//        resourceForm.setId(bookId);
-//        tagBean.insertNewTags(resourceForm);
-//        tagBean.insertExistingTags(resourceForm);
-        return "redirect:/books/" + resourceForm.getId();
+        bookBean.updateBook(resourceForm.toBook());
+        tagBean.updateTags(resourceForm);
+        return "redirect:/books/" + id;
     }
 }

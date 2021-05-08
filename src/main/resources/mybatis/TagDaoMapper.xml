@@ -36,4 +36,9 @@
         VALUES (#{resourceId}, #{tagId});
     </insert>
 
+    <delete id="deleteResourceTag">
+        DELETE FROM tb_resource_tags
+        WHERE resource_id = #{resourceId} AND tag_id = #{tagId}
+    </delete>
+
 </mapper>

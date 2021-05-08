@@ -82,6 +82,10 @@ public class BookBean {
         deleteBookRentRequestsById(requestId);
     }
 
+    public void updateBook(Book book){
+        bookDao.updateBook(book);
+    }
+
     private int isBookRentRequestDuplicated(BookRentRequest bookRentRequest) {
         return bookDao.getBookRentRequestByRequesterAndBookIds(
                 bookRentRequest
