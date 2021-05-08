@@ -26,7 +26,7 @@ public class OpinionRestController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deleteOpinion(@PathVariable int id) {
         opinionBean.deleteOpinion(id);
     }

@@ -33,7 +33,7 @@ public class EbookController {
         var book = ebookBean.getEbookById(id);
         var currentUser = currentUserService.getCurrentUser();
         model.addAttribute("tags", tagBean.getTagsByResourceId(id));
-        List<Opinion> opinions = opinionBean.getOpinionsByBookId(id);
+        List<Opinion> opinions = opinionBean.getOpinionsByResourceId(id);
         model.addAttribute("resource", book);
         model.addAttribute("opinions", opinions);
         model.addAttribute("opinion", new Opinion());

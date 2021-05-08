@@ -22,7 +22,7 @@ public class OpinionBean {
         opinionDao.insertOpinion(opinion);
     }
 
-    public List<Opinion> getOpinionsByBookId(Integer id) {
+    public List<Opinion> getOpinionsByResourceId(Integer id) {
         return opinionDao.getOpinionsByResourceId(id);
     }
 

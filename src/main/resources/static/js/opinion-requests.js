@@ -1,10 +1,10 @@
-const addOpinionULR = `/opinion`;
+const opinionULR = `/opinion`;
 
 function addOpinion(resourceId) {
     const description = document.getElementById('description').value;
     const rating = document.getElementById('rating').value;
     fetch(
-            addOpinionULR,
+        opinionULR,
             {
                 method: 'POST',
                 headers: headers,
@@ -21,3 +21,24 @@ function addOpinion(resourceId) {
         "Dodanie opinii zakończone niepowodzeniem"))
         .catch(handleError);
 }
+
+function deleteOpinion(opinionId) {
+
+    const isConfirmed = confirm("Czy na pewno chcesz usunąć swoją opinię?");
+    if (isConfirmed) {
+
+    }
+    fetch(
+        `${opinionULR}/${opinionId}`,
+        {
+            method: 'DELETE',
+            headers: headers,
+            xhrFields: {
+                withCredentials: true
+            },
+        })
+        .then(handleResponse("Usunięcie opinii zakończone sukcesem",
+            "Usunięcie opinii zakończone niepowodzeniem"))
+        .catch(handleError);
+}
+

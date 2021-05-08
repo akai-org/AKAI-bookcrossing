@@ -13,7 +13,8 @@
         </p>
         <div th:if="${opinion.author.id == user.id}">
             <i class="fas fa-pencil-alt"></i>
-            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-trash-alt"
+               th:onclick="'javascript:deleteOpinion(\'' + ${opinion.id} + '\');'"></i>
             <i class="fas fa-save d-none"></i>
         </div>
     </div>
