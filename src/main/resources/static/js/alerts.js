@@ -1,7 +1,6 @@
 function showAlert() {
     const successMessage = localStorage.getItem('success');
     const alert = document.getElementById('alert');
-    console.log("XDDDD");
     if (successMessage) {
         showSuccess(alert, successMessage);
         setTimeout( () => hide(alert),3000);
