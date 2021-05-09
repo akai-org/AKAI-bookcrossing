@@ -13,7 +13,7 @@ public class BookRestController {
 
     private final BookBean bookBean;
 
-    @PostMapping("/book/rent")
+    @PostMapping("/books/rent")
     public ResponseEntity<Void> bookRental(@RequestBody Book book) {
         boolean success = bookBean.insertBookUserRequest(book.getId());
         if (success) {

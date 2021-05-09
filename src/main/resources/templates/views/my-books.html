@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Moje książki</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/filter.js}"></script>
+    <script type="text/javascript" th:src="@{/js/pagination.js}"></script>
+    <script type="text/javascript" th:src="@{/js/requests/requests-common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/requests/my-books-requests.js}"></script>
+    <script type="text/javascript" th:src="@{/js/build-table/build-table-common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/build-table/build-books-owner-table.js}"></script>
+    <script type="text/javascript" th:src="@{/js/build-table/build-books-reader-table.js}"></script>
+    <script type="text/javascript" th:src="@{/js/build-table/build-book-requests-table.js}"></script>
+    <script type="text/javascript" th:src="@{/js/alerts.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/navbar.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/table.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/search.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/pagination.css}"/>
+    <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
+</head>
+<body>
+
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<div class="container-md mt-1">
+    <div id="alert"></div>
+    <div class="mb-5">
+        <div th:replace="fragments/search :: search(title='Prośby o wypożyczenie książki', id='book-requests')"></div>
+        <div th:replace="fragments/book-requests-table :: book-requests-table(${book_requests})"></div>
+        <div th:replace="fragments/pagination :: pagination('book-requests')"></div>
+    </div>
+    <div class="mb-5">
+        <div th:replace="fragments/search :: search(title='Moje książki udostępnione innym', id='books-owner')"></div>
+        <div th:replace="fragments/books-owner-table :: books-owner-table(${books_owner})"></div>
+        <div th:replace="fragments/pagination :: pagination('books-owner')"></div>
+    </div>
+    <div class="mb-5">
+        <div th:replace="fragments/search :: search(title='Ksiażki udostępnione mi przez innych', id='books-reader')"></div>
+        <div th:replace="fragments/books-reader-table :: books-reader-table(${books_reader})"></div>
+        <div th:replace="fragments/pagination :: pagination('books-reader')"></div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    const elementIdBookRequests = 'book-requests';
+    const bookRequests = [[${book_requests}]];
+    initializeSearch(elementIdBookRequests, bookRequests);
+    initializePagination(elementIdBookRequests, buildBookRequestsTable)
+    reloadPagination(elementIdBookRequests, bookRequests, 1);
+
+    const elementIdBooksOwner = 'books-owner';
+    const booksOwner = [[${books_owner}]];
+    initializeSearch(elementIdBooksOwner, booksOwner);
+    initializePagination(elementIdBooksOwner, buildBooksOwnerTable)
+    reloadPagination(elementIdBooksOwner, booksOwner, 1);
+
+    const elementIdBooksReader = 'books-reader';
+    const booksReader = [[${books_reader}]];
+    initializeSearch(elementIdBooksReader, booksReader);
+    initializePagination(elementIdBooksReader, buildBooksReaderTable)
+    reloadPagination(elementIdBooksReader, booksReader, 1);
+
+    showAlert();
+
+</script>
+</body>
+</html>

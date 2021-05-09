@@ -36,4 +36,6 @@ public interface BookDaoMapper {
     Integer getBookRentRequestByRequesterAndBookIds(@Param("requesterId") int requesterId, @Param("bookId") int bookId);
 
     void updateAvailable(@Param("bookId") int bookId, @Param("available") boolean available);
+
+    void updateBook(@Param("book") Book book);
 }

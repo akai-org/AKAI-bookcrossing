@@ -112,4 +112,12 @@
         FROM tb_book_user_request tbur
         WHERE tbur.id = ${id}
     </delete>
+
+    <update id="updateBook">
+        UPDATE tb_book
+        SET title = #{book.title},
+          author = #{book.author},
+          description = #{book.description}
+        WHERE id = #{book.id};
+    </update>
 </mapper>

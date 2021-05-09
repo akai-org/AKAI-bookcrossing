@@ -1,23 +1,29 @@
 package pl.akai.bookcrossing.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
-public class Ebook {
-    private int id;
+@EqualsAndHashCode(callSuper = true)
+public class Ebook extends Resource {
     private String googleId;
-    private String title;
-    private String author;
-    private String description;
     private String url;
-    private List<Tag> tagList = new ArrayList<>();
+
+    @Builder
+    public Ebook(int id,
+                 String title,
+                 String author,
+                 String description,
+                 List<Tag> tagList,
+                 String googleId,
+                 String url) {
+        super(id, title, author, description, tagList);
+        this.googleId = googleId;
+        this.url = url;
+    }
 }

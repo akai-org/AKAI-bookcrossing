@@ -23,7 +23,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
                                         Authentication authentication) throws IOException, ServletException {
         CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
 
-        User user = userDao.getUserByEmail(oAuth2User.getEmail());
+        var user = userDao.getUserByEmail(oAuth2User.getEmail());
 
         if (user == null) {
             user = User.builder()

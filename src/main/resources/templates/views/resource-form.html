@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Formularz Dodania Książki</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/navbar.css} ">
+    <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
+</head>
+
+<body>
+
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<div class="container d-flex flex-column justify-content-center align-items-center my-4 px-5">
+    <h3 class="display-5 text-center" th:text="${formTitle}">Tytuł</h3>
+
+    <form method="post"
+          th:action="@{${endpoint}}">
+        <div class="form-group mt-4">
+            <label for="title" class="form-label">Tytuł:</label>
+            <input id="title"
+                   class="form-control"
+                   th:name="title"
+                   th:value="${resource.title}"
+                   type="text"
+                   required/>
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="author" class="form-label">Autor:</label>
+            <input id="author"
+                   class="form-control"
+                   th:name="author"
+                   th:value="${resource.author}"
+                   type="text"
+                   required/>
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="description" class="form-label">Opis:</label>
+            <textarea id="description"
+                      class="form-control"
+                      cols="33"
+                      rows="5"
+                      th:name="description"
+                      th:text="${resource.description}"></textarea>
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="tags" class="form-label">Wybierz tagi:</label>
+            <select id="tags"
+                    class="form-select"
+                    multiple="multiple"
+                    th:field="${resource.existingTagsIdList}">
+                <option th:each="tag : ${tags}"
+                        th:text="${tag.name}"
+                        th:value="${tag.id}">Tag name
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="new-tags" class="form-label">
+                Dodaj nowe tagi rozdzielacjąc je przecinkiem (np. spring,java,html):
+            </label>
+            <input id="new-tags"
+                   class="form-control"
+                   th:field="${resource.newTagsNames}"
+                   type="text"/>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <input type="reset" class="btn btn-warning mt-2 col-md-5" value="Reset"/>
+            <input type="submit" class="btn btn-warning mt-2 col-md-5" value="Zapisz"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -20,4 +20,6 @@ public interface TagDaoMapper {
 
     void insertResourceTag(@Param("resourceId") int resourceId, @Param("tagId") int tagId);
 
+    void deleteResourceTag(@Param("resourceId") int resourceId, @Param("tagId") int tagId);
+
 }

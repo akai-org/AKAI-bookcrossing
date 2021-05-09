@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>AKAI Bookcrossing</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/filter.js}"></script>
+  <script type="text/javascript" th:src="@{/js/pagination.js}"></script>
+  <script type="text/javascript" th:src="@{/js/build-table/build-table-common.js}"></script>
+  <script type="text/javascript" th:src="@{/js/build-table/build-ebooks-list-table.js}"></script>
+  <script type="text/javascript" th:src="@{/js/alerts.js}"></script>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/search.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/navbar.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/table.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/pagination.css}"/>
+  <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container-md mt-1">
+  <div id="alert"></div>
+  <div th:replace="fragments/search :: search(title='Spis ebooków', id='ebooks-list')"></div>
+  <div th:replace="fragments/ebooks-table :: ebooks-table(${ebooks})"></div>
+  <div th:replace="fragments/pagination :: pagination('ebooks-list')"></div>
+</div>
+<script th:inline="javascript">
+  const elementId = 'ebooks-list';
+  const ebooks = [[${ebooks}]];
+  initializeSearch(elementId, ebooks);
+  initializePagination(elementId, buildEbooksListTable)
+  reloadPagination(elementId, ebooks, 1);
+  showAlert();
+</script>
+</body>
+</html>

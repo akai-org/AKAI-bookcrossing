@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Szczegóły książki</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/requests/requests-common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/requests/opinion-requests.js}"></script>
+    <script type="text/javascript" th:src="@{/js/edit-opinion/edit-opinion.js}"></script>
+    <script type="text/javascript" th:src="@{/js/alerts.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.css} ">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/views/resource-details.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/navbar.css} ">
+    <link rel="shortcut icon" th:href="@{/img/favicon.svg}">
+</head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <div id="alert"></div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="display-5 m-0"
+            th:classappend="${resource.class.name == 'pl.akai.bookcrossing.model.Ebook' ? 'text-break' : '' }"
+            th:text="${resource.title}"></h2>
+
+        <a th:if="${resource.class.name == 'pl.akai.bookcrossing.model.Ebook'}"
+           th:href="@{/ebooks/{id}/edit(id = ${resource.id})}"
+           class="btn btn-secondary w-md-100">Edytuj</a>
+        <a th:if="${resource.class.name == 'pl.akai.bookcrossing.model.Book'}"
+           th:href="@{/books/{id}/edit(id = ${resource.id})}"
+           class="btn btn-secondary w-md-100">Edytuj</a>
+    </div>
+    <p class="lead" th:inline="text">
+        <span class="property">Autor: </span>
+        [[${resource.author}]]
+    </p>
+    <p class="lead" th:inline="text">
+        <span class="property">Opis: </span>
+        [[${resource?.description}]]
+    </p>
+
+    <p th:if="${resource.class.name == 'pl.akai.bookcrossing.model.Ebook'}"
+       class="lead">
+        <span class="property">Link: </span>
+        <a th:href="${resource.url}"
+           target="_blank"
+           class="btn btn-link w-md-100">Przejdź do dysku</a>
+    </p>
+
+    <p class="lead property" th:text="'Tagi książki:'"></p>
+    <div th:each="tag : ${tags}"
+         th:text="${tag?.name}"
+         class="d-inline border rounded-pill p-2">
+    </div>
+
+    <hr class="my-4">
+
+    <div class="d-flex flex-column justify-content-between flex-lg-row">
+        <form class="form w-100 me-lg-4 mb-3">
+            <div class="form-group">
+                <h3 class="mb-3">Dodaj opinię</h3>
+
+                <label class="h5" for="rating">Ocena:</label>
+                <select class="form-select col-lg-2 col-md-2 mt-2" id="rating" name="rating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+                <div class="form-group">
+                    <label class="h5" for="description">Komentarz:</label>
+                    <textarea class="form-control col-lg-8 col-md-6" id="description" name="description"
+                              rows="6"></textarea>
+                </div>
+
+                <div class="mt-2">
+                    <input class="btn btn-warning mb-2" type="reset" value="Reset"/>
+                    <a class="btn btn-warning mb-2 mr-2"
+                       th:onclick="'javascript:addOpinion(\'' + ${resource.id} + '\');'">Dodaj</a>
+                </div>
+            </div>
+        </form>
+
+        <div class="w-100 mb-4">
+            <h3 class="mb-2">Opinie:</h3>
+            <div th:each="opinion : ${opinions}">
+                <div th:replace="fragments/opinion :: opinion(opinion=${opinion}, user=${user})"></div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script th:inline="javascript">
+    showAlert();
+</script>
+</body>
+</html>

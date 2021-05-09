@@ -4,6 +4,7 @@
 
     <resultMap id="baseOpinionMap" type="Opinion">
         <id column="id" property="id" jdbcType="INTEGER"/>
+        <id column="resource_id" property="resourceId" jdbcType="INTEGER"/>
         <result column="rating" property="rating" jdbcType="INTEGER"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
     </resultMap>
@@ -13,7 +14,7 @@
     </resultMap>
 
     <select id="getOpinionsByResourceId" resultMap="extendedOpinionMap">
-        SELECT resource_id, rating, description, author_id
+        SELECT id, resource_id, rating, description, author_id
         FROM tb_opinion
         WHERE resource_id = #{id};
     </select>

@@ -34,7 +34,7 @@ public class GoogleDriveConfig {
             @Value("${spring.application.google-drive.credentials}") String pathToCredentials) {
         Drive drive = null;
         JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
-        try (FileInputStream initialFile = new FileInputStream(Objects.requireNonNull(getClass().getResource(pathToCredentials)).getFile())) {
+        try (var initialFile = new FileInputStream(Objects.requireNonNull(getClass().getResource(pathToCredentials)).getFile())) {
             HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             GoogleCredentials credentials = GoogleCredentials.fromStream(initialFile).createScoped(DriveScopes.DRIVE);
             HttpRequestInitializer requestInitializer = new HttpCredentialsAdapter(credentials);

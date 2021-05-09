@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table th:fragment="books-owner-table (books_owner)"
+        class="table table-striped" id="books-owner">
+<!--    SCHEMA OF BOOKS OWNER TABLE BUILT WITH SCRIPT-->
+<!--  <tr class="header-text-size">-->
+<!--    <th>Tytuł</th>-->
+<!--    <th>Autor</th>-->
+<!--    <th>Obecny Właściciel</th>-->
+<!--    <th>Szczegóły</th>-->
+<!--  </tr>-->
+<!--  <tr th:each="book : ${books_owner}" class="table-text-size">-->
+<!--    <td class="title" th:text="${book.title}">Tytuł</td>-->
+<!--    <td th:text="${book.author}">Autor</td>-->
+<!--    <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>-->
+<!--    <td><a class="btn btn-primary table-button-size" th:href="@{/books/{id}(id = ${book.id})}">Szczegóły</a></td>-->
+<!--  </tr>-->
+</table>
+</body>
+</html>

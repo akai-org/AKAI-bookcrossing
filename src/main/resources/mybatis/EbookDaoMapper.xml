@@ -16,7 +16,7 @@
                     ofType="Tag" select="pl.akai.bookcrossing.tag.TagDaoMapper.getTagsByResourceId"/>
     </resultMap>
 
-    <select id="getAllBooks" resultMap="fullEbookMap">
+    <select id="getAllEbooks" resultMap="fullEbookMap">
         SELECT *
         FROM tb_ebook;
     </select>
@@ -41,5 +41,13 @@
                         #{ebook.id, jdbcType = INTEGER, mode = OUT}
             )}
     </insert>
+
+    <update id="updateEbook">
+        UPDATE tb_ebook
+        SET title = #{ebook.title},
+            author = #{ebook.author},
+            description = #{ebook.description}
+        WHERE id = #{ebook.id};
+    </update>
 
 </mapper>
