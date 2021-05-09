@@ -14,8 +14,13 @@ function editOpinion(opinionId) {
 
     const description = opinion.querySelector('div.description div.text-break');
     const textarea = createTextarea(description);
-    description.replaceWith(textarea);
-
+    if (description) {
+        description.replaceWith(textarea);
+    } else {
+        const descriptionContainer = opinion.querySelector('div.description');
+        descriptionContainer.appendChild(createCommentLabel());
+        descriptionContainer.appendChild(textarea);
+    }
 }
 
 function createRatingSelect(oldValue) {
@@ -29,6 +34,17 @@ function createRatingSelect(oldValue) {
     return select;
 }
 
+function createSelect(range) {
+    const select = document.createElement('select');
+    for (const value of range) {
+        const option = document.createElement('option');
+        option.value = String(value);
+        option.text = value;
+        select.appendChild(option);
+    }
+    return select;
+}
+
 function createRatingSelectLabel() {
     const label = document.createElement('label')
     label.classList.add('property')
@@ -38,7 +54,15 @@ function createRatingSelectLabel() {
 
 function createTextarea(description) {
     const textarea = document.createElement('textarea');
-    textarea.innerText = description.innerText;
+    textarea.innerText = description ? description.innerText : '';
     textarea.classList.add('form-control');
     return textarea;
+}
+
+function createCommentLabel() {
+    const div = document.createElement('div');
+    div.classList.add('lead');
+    div.classList.add('property');
+    div.innerText = 'Komentarz: '
+    return div;
 }

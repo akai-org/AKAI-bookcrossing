@@ -1,4 +1,4 @@
-function buildEbooksTable(table, data) {
+function buildEbooksListTable(table, data) {
     const header = ['Tytuł', 'Autor', 'Szczegóły', 'Link'];
     const headerRow = table.children[0].children[0];
     for (const headerKey of header) {

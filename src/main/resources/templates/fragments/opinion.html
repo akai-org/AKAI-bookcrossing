@@ -24,7 +24,7 @@
         [[${opinion.rating}]]
     </p>
     <div class="description">
-        <div th:if="${opinion.description != null}">
+        <div th:if="${opinion.description != null && opinion.description != ''}">
             <div class="lead property" th:text="'Komentarz:'"></div>
             <div class="text-break" th:text="${opinion.description}">Opis</div>
         </div>

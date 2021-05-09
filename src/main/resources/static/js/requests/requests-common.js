@@ -10,9 +10,9 @@ function handleResponse(successMessage, errorMessage) {
     return response => {
         if (response.status === 200 || response.status === 201) {
             location.reload();
-            alert(successMessage);
+            localStorage.setItem('success', successMessage);
         } else {
-            alert(errorMessage);
+            localStorage.setItem('error', errorMessage);
         }
     }
 }
