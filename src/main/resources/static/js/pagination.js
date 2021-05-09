@@ -81,8 +81,7 @@ function createPageLink(id, data, value) {
     const li = document.createElement('li');
     li.classList.add('page-item');
     const a = document.createElement('a');
-    a.classList.add('page-link');
-    a.classList.add('pointer');
+    a.classList.add('page-link', 'pointer');
     a.innerText = value;
     a.onclick = () => reloadPagination(id, data, value);
     li.appendChild(a);

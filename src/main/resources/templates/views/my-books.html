@@ -15,6 +15,7 @@
     <script type="text/javascript" th:src="@{/js/build-table/build-books-owner-table.js}"></script>
     <script type="text/javascript" th:src="@{/js/build-table/build-books-reader-table.js}"></script>
     <script type="text/javascript" th:src="@{/js/build-table/build-book-requests-table.js}"></script>
+    <script type="text/javascript" th:src="@{/js/alerts.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/navbar.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/fragments/table.css}"/>
@@ -26,6 +27,7 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
 <div class="container-md mt-1">
+    <div id="alert"></div>
     <div class="mb-5">
         <div th:replace="fragments/search :: search(title='Prośby o wypożyczenie książki', id='book-requests')"></div>
         <div th:replace="fragments/book-requests-table :: book-requests-table(${book_requests})"></div>
@@ -61,7 +63,9 @@
     initializeSearch(elementIdBooksReader, booksReader);
     initializePagination(elementIdBooksReader, buildBooksReaderTable)
     reloadPagination(elementIdBooksReader, booksReader, 1);
-</script>
 
+    showAlert();
+
+</script>
 </body>
 </html>

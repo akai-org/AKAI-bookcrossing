@@ -27,10 +27,7 @@ function createRatingSelect(oldValue) {
     const ratingValues = [...Array(5).keys()].map(value => value + 1);
     const select = createSelect(ratingValues);
     select.value = oldValue;
-    select.classList.add('form-select');
-    select.classList.add('d-inline-block');
-    select.classList.add('ms-2');
-    select.classList.add('fit-content');
+    select.classList.add('form-select', 'd-inline-block', 'ms-2', 'fit-content');
     return select;
 }
 
@@ -61,8 +58,7 @@ function createTextarea(description) {
 
 function createCommentLabel() {
     const div = document.createElement('div');
-    div.classList.add('lead');
-    div.classList.add('property');
+    div.classList.add('lead', 'property');
     div.innerText = 'Komentarz: '
     return div;
 }

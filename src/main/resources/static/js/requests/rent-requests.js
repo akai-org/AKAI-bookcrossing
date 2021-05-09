@@ -19,9 +19,11 @@ function sendRentRequest(bookId) {
 
 function handleResponse(response) {
     if (response.status === 201) {
-        alert("Wysłanie prośby o wypożyczenie zakończone sukcesem");
+        localStorage.setItem('success', "Wysłanie prośby o wypożyczenie zakończone sukcesem");
+        location.reload();
     } else if (response.status === 409) {
-        alert("Już wysłałeś prośbę o tę książkę");
+        localStorage.setItem('error', "Już wysłałeś prośbę o tę książkę");
+        location.reload();
     } else {
         alert("Wysłanie prośby o wypożyczenie zakończone niepowodzeniem");
     }

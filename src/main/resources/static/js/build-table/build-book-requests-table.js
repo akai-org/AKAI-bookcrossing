@@ -24,7 +24,7 @@ function createBookRequestsTableRow(table, dataRow) {
     row.classList.add('w-25');
 
     const acceptButton = document.createElement('a');
-    acceptButton.classList.add('btn', 'btn-success', 'table-button-size', 'mr-2');
+    acceptButton.classList.add('btn', 'btn-success', 'table-button-size', 'me-2');
     acceptButton.innerHTML = 'Zaakceptuj';
     acceptButton.onclick = () => acceptRentRequest(dataRow.id);
 
