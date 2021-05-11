@@ -1,5 +1,5 @@
 function buildBookRequestsTable(table, data) {
-    const header = ['Tytuł', 'Autor', 'Właściciel', 'Szczegóły', 'Udostępnij'];
+    const header = ['Tytuł', 'Autor', 'Osoba prosząca', 'Szczegóły', 'Udostępnij'];
     const headerRow = table.children[0].children[0];
     for (const headerKey of header) {
         createTableHeader(headerRow, headerKey);
