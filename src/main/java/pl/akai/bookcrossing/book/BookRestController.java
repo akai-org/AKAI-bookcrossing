@@ -19,15 +19,15 @@ public class BookRestController {
     private final BookBean bookBean;
     private final OpinionBean opinionBean;
 
-    @GetMapping("/books/list")
+    @GetMapping("/api/books")
     public List<Book> booksList() {
         return bookBean.getAllBooks();
     }
 
-    @GetMapping("/book/details/{id}")
+    @GetMapping("/api/books/{id}")
     public Dictionary<String, Object> bookDetails(@PathVariable(name = "id") Integer id) {
         Dictionary<String, Object> dict = new Hashtable<>();
-        dict.put("bookDetails", bookBean.getBookById(id));
+        dict.put("book", bookBean.getBookById(id));
         dict.put("opinions", opinionBean.getOpinionsByResourceId(id));
         return dict;
     }
