@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.opinion.OpinionBean;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,11 +25,11 @@ public class BookRestController {
     }
 
     @GetMapping("/api/books/{id}")
-    public Dictionary<String, Object> bookDetails(@PathVariable(name = "id") Integer id) {
-        Dictionary<String, Object> dict = new Hashtable<>();
-        dict.put("book", bookBean.getBookById(id));
-        dict.put("opinions", opinionBean.getOpinionsByResourceId(id));
-        return dict;
+    public Map<String, Object> bookDetails(@PathVariable(name = "id") Integer id) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("book", bookBean.getBookById(id));
+        data.put("opinions", opinionBean.getOpinionsByResourceId(id));
+        return data;
     }
 
     @PostMapping("/books/rent")
